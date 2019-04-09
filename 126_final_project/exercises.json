@@ -1,0 +1,299 @@
+{
+  "exercises": [
+    {
+      "name": "Ab Crunch Machine",
+      "muscle": "Abdominals",
+      "equipment": "Machine"
+    },
+    {
+      "name": "Kettlebell Windmill",
+      "muscle": "Abdominals",
+      "equipment": "Kettlebell"
+    },
+    {
+      "name": "Air Bike",
+      "muscle": "Abdominals",
+      "equipment": "None"
+    },
+    {
+      "name": "Kettlebell Windmill",
+      "muscle": "Abdominals",
+      "equipment": "Kettlebell"
+    },
+    {
+      "name": "Alternate Heel Touches",
+      "muscle": "Abdominals",
+      "equipment": "None"
+    },
+    {
+      "name": "Barbell Ab Rollout",
+      "muscle": "Abdominals",
+      "equipment": "Barbell"
+    },
+    {
+      "name": "Kettlebell Russian Twists",
+      "muscle": "Abdominals",
+      "equipment": "Kettlebell"
+    },
+    {
+      "name": "Reverse Crunh",
+      "muscle": "Abdominals",
+      "equipment": "None"
+    },
+    {
+      "name": "Crunches",
+      "muscle": "Abdominals",
+      "equipment": "None"
+    },
+    {
+      "name": "Dumbbell Side Bend",
+      "muscle": "Abdominals",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Elbow to Knee",
+      "muscle": "Abdominals",
+      "equipment": "None"
+    },
+    {
+      "name": "Frog Sit-Ups",
+      "muscle": "Abdominals",
+      "equipment": "None"
+    },
+    {
+      "name": "Kettlebell Windmill",
+      "muscle": "Abdominals",
+      "equipment": "Kettlebell"
+    },
+    {
+      "name": "Lateral Box Jump",
+      "muscle": "Adductors",
+      "equipment": "Box/Bench"
+    },
+    {
+      "name": "Adductor Machine",
+      "muscle": "Adductors",
+      "equipment": "Machine"
+    },
+    {
+      "name": "Lateral Box Jump",
+      "muscle": "Adductors",
+      "equipment": "Box/Bench"
+    },
+    {
+      "name": "Side Leg Raises",
+      "muscle": "Adductors",
+      "equipment": "None"
+    },
+    {
+      "name": "Thigh Adductor",
+      "muscle": "Adductors",
+      "equipment": "None"
+    },
+    {
+      "name": "Standing Long Jump",
+      "muscle": "Quadriceps",
+      "equipment": "None"
+    },
+    {
+      "name": "Stairmaster",
+      "muscle": "Quadriceps",
+      "equipment": "Machine"
+    },
+    {
+      "name": "Squat with Bands",
+      "muscle": "Quadriceps",
+      "equipment": "Bands"
+    },
+    {
+      "name": "Barbell Squat",
+      "muscle": "Quadriceps",
+      "equipment": "Barbell"
+    },
+    {
+      "name": "Smith Machine Squat",
+      "muscle": "Quadriceps",
+      "equipment": "Machine"
+    },
+    {
+      "name": "Dumbbell Squat",
+      "muscle": "Quadriceps",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Dumbbell Split Squat",
+      "muscle": "Quadriceps",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Running",
+      "muscle": "Quadriceps",
+      "equipment": "None"
+    },
+    {
+      "name": "Rowing",
+      "muscle": "Quadriceps",
+      "equipment": "Machine"
+    },
+    {
+      "name": "Narrow Stance Leg Press",
+      "muscle": "Quadriceps",
+      "equipment": "Machine"
+    },
+    {
+      "name": "Mountain Climbers",
+      "muscle": "Quadriceps",
+      "equipment": "None"
+    },
+    {
+      "name": "Machine Bicep Curl",
+      "muscle": "Biceps",
+      "equipment": "Machine"
+    },
+    {
+      "name": "Machine Preacher Curl",
+      "muscle": "Biceps",
+      "equipment": "Machine"
+    },
+    {
+      "name": "Cable Curl",
+      "muscle": "Biceps",
+      "equipment": "Cable"
+    },
+    {
+      "name": "Dumbbell Bicep Curl",
+      "muscle": "Biceps",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Dumbbell Hammer Curl",
+      "muscle": "Biceps",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Cross Body Hammer Curl",
+      "muscle": "Biceps",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Cable Preacher Curl",
+      "muscle": "Biceps",
+      "equipment": "Cable"
+    },
+    {
+      "name": "Alternating Cable Shoulder Press",
+      "muscle": "Shoulders",
+      "equipment": "Cable"
+    },
+    {
+      "name": "Alternating Kettlebell Press",
+      "muscle": "Shoulders",
+      "equipment": "Kettlebell"
+    },
+    {
+      "name": "Arm Circles",
+      "muscle": "Shoulders",
+      "equipment": "None"
+    },
+    {
+      "name": "Arnold Dumbbell Press",
+      "muscle": "Shoulders",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Back Flys with Bands",
+      "muscle": "Shoulders",
+      "equipment": "Band"
+    },
+    {
+      "name": "Band Pull Apart",
+      "muscle": "Shoulders",
+      "equipment": "Band"
+    },
+    {
+      "name": "Dumbbell Lateral Raise",
+      "muscle": "Shoulders",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Dumbbell Forward Raise",
+      "muscle": "Shoulders",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Dumbbell Upright Row",
+      "muscle": "Shoulders",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Alternating Cable Shoulder Press",
+      "muscle": "Shoulders",
+      "equipment": "Cable"
+    },
+    {
+      "name": "Cable Flys",
+      "muscle": "Chest",
+      "equipment": "Cable"
+    },
+    {
+      "name": "Incline Dumbbell Flys",
+      "muscle": "Chest",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Push-Ups Medium",
+      "muscle": "Chest",
+      "equipment": "None"
+    },
+    {
+      "name": "Push-Ups Wide",
+      "muscle": "Chest",
+      "equipment": "None"
+    },
+    {
+      "name": "Barbell Bench Press",
+      "muscle": "Chest",
+      "equipment": "Barbell"
+    },
+    {
+      "name": "Dumbbell Bench Press",
+      "muscle": "Chest",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Band Good Moring",
+      "muscle": "Hamstrings",
+      "equipment": "Band"
+    },
+    {
+      "name": "Box Jumps",
+      "muscle": "Hamstrings",
+      "equipment": "Box/Bench"
+    },
+    {
+      "name": "Barbell Deadlift",
+      "muscle": "Hamstrings",
+      "equipment": "Barbell"
+    },
+    {
+      "name": "Dumbbell Deadlift",
+      "muscle": "Hamstrings",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Dumbbell Clean",
+      "muscle": "Hamstrings",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Hamstring Curl Machine",
+      "muscle": "Hamstrings",
+      "equipment": "Machine"
+    },
+    {
+      "name": "Kettlebell Swings",
+      "muscle": "Hamstrings",
+      "equipment": "Kettlebell"
+    }
+  ]
+}
