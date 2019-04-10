@@ -13,7 +13,7 @@ the exercise as applicable.
 
 
 
-**Libraries**
+**openFrameworks Libraries**
 
 ofxJSON : https://github.com/jeffcrouse/ofxJSON
 
