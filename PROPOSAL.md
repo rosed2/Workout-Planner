@@ -21,6 +21,6 @@ ofxGui : https://openframeworks.cc/documentation/ofxGui/
 
 
 
-**API**
+**Possible API**
 
 exercise : https://github.com/davejt/exercise
