@@ -15,12 +15,15 @@ the exercise as applicable.
 
 **openFrameworks Libraries**
 
-ofxJSON : https://github.com/jeffcrouse/ofxJSON
+* ofxJSON : https://github.com/jeffcrouse/ofxJSON
+	* I'll use this library to get data about different exercises from either a JSON file or 
+from an API call. 
 
-ofxGui : https://openframeworks.cc/documentation/ofxGui/
-
+* ofxGui : https://openframeworks.cc/documentation/ofxGui/
+	* I'll use this library to create the user interface.
 
 
 **Possible API**
 
 exercise : https://github.com/davejt/exercise
+This API contains data about 900 different exercises.
