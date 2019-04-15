@@ -8,3 +8,5 @@ this functionality after I get it working if I have time.
 and sliders that interact with another class. 
 1. 4-9-19 Started experimenting with ofxJSON. I can successfully read from a JSON file 
 and print out the data it contains. 
+1. 4-10-19 Successfully learned how to get an array from a JSON file.
+1. 4-15-19 Finished creating JSON file of exercises.

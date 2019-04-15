@@ -294,6 +294,136 @@
       "name": "Kettlebell Swings",
       "muscle": "Hamstrings",
       "equipment": "Kettlebell"
+    },
+    {
+      "name": "Alternating Kettlebell Row",
+      "muscle": "Middle Back",
+      "equipment": "Kettlebell"
+    },
+    {
+      "name": "Bent Over Barbell Row",
+      "muscle": "Middle Back",
+      "equipment": "Barbell"
+    },
+    {
+      "name": "Bent Over Dumbbell Row",
+      "muscle": "Middle Back",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Dumbbell Incline Row",
+      "muscle": "Middle Back",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Seated Cable Row",
+      "muscle": "Middle Back",
+      "equipment": "Cable"
+    },
+    {
+      "name": "Cable Pull Through",
+      "muscle": "Glutes",
+      "equipment": "Cable"
+    },
+    {
+      "name": "Kettlebell Pull Through",
+      "muscle": "Glutes",
+      "equipment": "Kettlebell"
+    },
+    {
+      "name": "Barbell Hip Thrust",
+      "muscle": "Glutes",
+      "equipment": "Barbell"
+    },
+    {
+      "name": "Cable Kickback",
+      "muscle": "Glutes",
+      "equipment": "Cable"
+    },
+    {
+      "name": "Hip Lift with Band",
+      "muscle": "Glutes",
+      "equipment": "Band"
+    },
+    {
+      "name": "Kettlebell Bridge",
+      "muscle": "Glutes",
+      "equipment": "Kettlebell"
+    },
+    {
+      "name": "Calf Press on Leg Press Machine",
+      "muscle": "Calves",
+      "equipment": "Machine"
+    },
+    {
+      "name": "Calf Raise",
+      "muscle": "Calves",
+      "equipment": "None"
+    },
+    {
+      "name": "Barbell Seated Calf Raise",
+      "muscle": "Calves",
+      "equipment": "Barbell"
+    },
+    {
+      "name": "Calf Raise with Band",
+      "muscle": "Calves",
+      "equipment": "Band"
+    },
+    {
+      "name": "Calve Raise",
+      "muscle": "Calves",
+      "equipment": "Machine"
+    },
+    {
+      "name": "Bent-Arm Barbell Pullover",
+      "muscle": "Lats",
+      "equipment": "Barbell"
+    },
+    {
+      "name": "Cable Incline Pushdown",
+      "muscle": "Lats",
+      "equipment": "Cable"
+    },
+    {
+      "name": "Elevated Cable Rows",
+      "muscle": "Lats",
+      "equipment": "Cable"
+    },
+    {
+      "name": "Bent-Arm Barbell Pullover",
+      "muscle": "Lats",
+      "equipment": "Barbell"
+    },
+    {
+      "name": "Dumbbell Bent-Over Tricep Extension",
+      "muscle": "Tricep",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Dumbbell Bent-Over Kickback",
+      "muscle": "Tricep",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Dumbbell Skull Crusher",
+      "muscle": "Tricep",
+      "equipment": "Dumbbell"
+    },
+    {
+      "name": "Push-Ups Close Tricep Position",
+      "muscle": "Tricep",
+      "equipment": "None"
+    },
+    {
+      "name": "Bench Dip",
+      "muscle": "Tricep",
+      "equipment": "Bench"
+    },
+    {
+      "name": "Cable Incline Tricep Extension",
+      "muscle": "Tricep",
+      "equipment": "Cable"
     }
   ]
 }
