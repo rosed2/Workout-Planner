@@ -39,3 +39,5 @@ void Exercise::AddReps(int rep) {
 void Exercise::AddWeight(int weight) {
 	weights_.push_back(weight);
 }
+
+

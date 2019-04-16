@@ -20,7 +20,7 @@ vector<Exercise> WorkoutPlan::GetExercises() {
 }
 
 string WorkoutPlan::GetName() {
-	return name;
+	return name_;
 }
 
 void WorkoutPlan::SetName(string name) {
@@ -29,4 +29,13 @@ void WorkoutPlan::SetName(string name) {
 
 void WorkoutPlan::SetExercises(vector<Exercise> exercises) {
 	exercises_ = exercises;
+}
+
+bool WorkoutPlan::ContainsExercise(string exercise_name) {
+	for (int i = 0; i < exercises_.size(); i++) {
+		if (exercises_[i].GetName().find(exercise_name) != std::string::npos) {
+			return true;
+		}
+	}
+	return false;
 }
