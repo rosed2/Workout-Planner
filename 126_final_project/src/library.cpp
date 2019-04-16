@@ -4,6 +4,7 @@
 #include "workout_plan.h"
 #include <string>
 #include <vector>
+#include <algorithm>
 using std::string;
 using std::vector;
 
@@ -39,4 +40,12 @@ vector<WorkoutPlan> Library::SearchForPlanByExercise(string name) {
 		}
 	}
 	return to_return;
+}
+
+void Library::AddWorkoutPlan(WorkoutPlan plan) {
+	workout_plans_.push_back(plan);
+}
+
+vector<WorkoutPlan> Library::GetWorkoutPlans() {
+	return workout_plans_;
 }

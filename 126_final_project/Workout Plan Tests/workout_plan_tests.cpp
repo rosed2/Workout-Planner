@@ -1,8 +1,9 @@
 //Tests for workout_plan 4-15-19
 //Created by Rose Dinh 
 
-#include "../126_final_project/src/exercise.h"
-#include "../126_final_project/src/workout_plan.h"
+#include "../src/exercise.h"
+#include "../src/workout_plan.h"
+
 #define CATCH_CONFIG_MAIN  
 #include "catch.hpp"
 #include <vector>
@@ -12,30 +13,6 @@ using std::vector;
 using std::string;
 
 Exercise ex1 = Exercise("name", "equipment");
-
-//-----------------------------Tests for Exercises------------------------------
-TEST_CASE("Exercise Constructor") {
-	REQUIRE(ex1.GetName() == "name");
-	REQUIRE(ex1.GetEquipment() == "equipment");
-}
-
-TEST_CASE("Exercise Reps") {
-	REQUIRE(ex1.GetReps().size() == 0);
-	ex1.AddReps(10);
-	vector<int> vec{ 10 };
-	REQUIRE(ex1.GetReps().size() == 1);
-	REQUIRE(ex1.GetReps()[0] == 10);
-	REQUIRE(ex1.GetReps() == vec);
-}
-
-TEST_CASE("Exercise Weights") {
-	REQUIRE(ex1.GetWeights().size() == 0);
-	ex1.AddWeight(10);
-	vector<int> vec{ 10 };
-	REQUIRE(ex1.GetWeights().size() == 1);
-	REQUIRE(ex1.GetWeights()[0] == 10);
-	REQUIRE(ex1.GetWeights() == vec);
-}
 
 
 //----------------------------------Tests for WorkoutPlan-----------------------------
@@ -123,17 +100,3 @@ TEST_CASE("Workout Plan Add Exercise") {
 	REQUIRE(w1.GetExercises().size() == 2);
 }
 
-
-
-//-----------------------------------------Tests for Library---------------------------------
-TEST_CASE("Library") {
-	Exercise ex1 = Exercise("Exercise 1", "none");
-	Exercise ex2 = Exercise("Exercise 2", "dumbbells");
-	vector<Exercise> vec{ ex1, ex2 };
-	WorkoutPlan w1 = WorkoutPlan("name", vec);
-
-	REQUIRE(w1.ContainsExercise("1"));
-	REQUIRE(w1.ContainsExercise("exercise 1"));
-	REQUIRE(w1.ContainsExercise("Exercise 1"));
-	REQUIRE(w1.GetExercises()[0].GetName() == "Exercise 1");
-}
