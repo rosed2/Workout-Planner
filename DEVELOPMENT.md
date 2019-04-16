@@ -10,3 +10,5 @@ and sliders that interact with another class.
 and print out the data it contains. 
 1. 4-10-19 Successfully learned how to get an array from a JSON file.
 1. 4-15-19 Finished creating JSON file of exercises.
+1. 4-15-19 Create classes for Exercise, WorkoutPlan, and Library
+1. 4-15-19 Add tests for Exercise, WorkoutPlan, and Library
