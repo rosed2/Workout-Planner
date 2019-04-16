@@ -15,6 +15,7 @@ public:
 	void SetName(std::string);
 	void SetExercises(std::vector<Exercise>);
 	bool ContainsExercise(std::string);
+	void AddExercise(Exercise);
 
 private:
 	std::string name_;
