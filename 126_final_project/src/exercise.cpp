@@ -6,10 +6,11 @@
 using std::string;
 using std::vector;
 
-Exercise::Exercise(string name, string equipment)
+Exercise::Exercise(string name, string muscle, string equipment)
 {
 	name_ = name;
 	equipment_ = equipment;
+	muscle_ = muscle;
 }
 
 Exercise::~Exercise()
@@ -40,4 +41,7 @@ void Exercise::AddWeight(int weight) {
 	weights_.push_back(weight);
 }
 
+void Exercise::GetMuscle() {
+	return muscle_;
+}
 
