@@ -12,7 +12,7 @@
 using std::vector;
 using std::string;
 
-Exercise ex1 = Exercise("name", "equipment");
+Exercise ex1 = Exercise("name", "arm", "equipment");
 
 
 //----------------------------------Tests for WorkoutPlan-----------------------------
@@ -26,8 +26,8 @@ TEST_CASE("Workout Plan Get/Set Name") {
 }
 
 TEST_CASE("Workout Plan Get Exercises") {
-	Exercise ex1 = Exercise("a", "none");
-	Exercise ex2 = Exercise("b", "dumbbells");
+	Exercise ex1 = Exercise("a", "arm", "none");
+	Exercise ex2 = Exercise("b", "leg", "dumbbells");
 	vector<Exercise> vec{ ex1, ex2 };
 	WorkoutPlan w1 = WorkoutPlan("name", vec);
 	REQUIRE(w1.GetExercises().size() == 2);
@@ -35,8 +35,8 @@ TEST_CASE("Workout Plan Get Exercises") {
 }
 
 TEST_CASE("Workout Plan Set Exercises") {
-	Exercise ex1 = Exercise("a", "none");
-	Exercise ex2 = Exercise("b", "dumbbells");
+	Exercise ex1 = Exercise("a", "arm", "none");
+	Exercise ex2 = Exercise("b", "leg", "dumbbells");
 	vector<Exercise> vec{ ex1, ex2 };
 	WorkoutPlan w1 = WorkoutPlan("name", vec);
 
@@ -54,8 +54,8 @@ TEST_CASE("Workout Plan Set Exercises") {
 
 //-----------------------Tests for ContainsExercise--------------------
 TEST_CASE("Workout Plan Does Contain Exercise") {
-	Exercise ex1 = Exercise("Exercise 1", "none");
-	Exercise ex2 = Exercise("Exercise 2", "dumbbells");
+	Exercise ex1 = Exercise("Exercise 1", "arm", "none");
+	Exercise ex2 = Exercise("Exercise 2", "leg", "dumbbells");
 	vector<Exercise> vec{ ex1, ex2 };
 	WorkoutPlan w1 = WorkoutPlan("name", vec);
 
@@ -66,8 +66,8 @@ TEST_CASE("Workout Plan Does Contain Exercise") {
 }
 
 TEST_CASE("Workout Plan Doesn't Contain Exercise") {
-	Exercise ex1 = Exercise("a", "none");
-	Exercise ex2 = Exercise("b", "dumbbells");
+	Exercise ex1 = Exercise("a", "arm", "none");
+	Exercise ex2 = Exercise("b", "leg", "dumbbells");
 	vector<Exercise> vec{ ex1, ex2 };
 	WorkoutPlan w1 = WorkoutPlan("name", vec);
 	REQUIRE(!w1.ContainsExercise("c"));
@@ -84,19 +84,21 @@ TEST_CASE("Workout Plan Add Exercise to Empty") {
 	vector<Exercise> vec;
 	WorkoutPlan w1 = WorkoutPlan("name", vec);
 	REQUIRE(w1.GetExercises().size() == 0);
-	Exercise ex1 = Exercise("exer", "none");
+	Exercise ex1 = Exercise("exer", "arm", "none");
 	w1.AddExercise(ex1);
 	REQUIRE(w1.GetExercises().size() == 1);
 	REQUIRE(w1.GetExercises()[0].GetName() == "exer");
 }
 
 TEST_CASE("Workout Plan Add Exercise") {
-	Exercise ex0 = Exercise("exer1", "none");
+	Exercise ex0 = Exercise("exer1", "arm", "none");
 	vector<Exercise> vec{ ex0 };
 	WorkoutPlan w1 = WorkoutPlan("name", vec);
 	REQUIRE(w1.GetExercises().size() == 1);
-	Exercise ex1 = Exercise("exer", "none");
+	Exercise ex1 = Exercise("exer", "arm", "none");
 	w1.AddExercise(ex1);
 	REQUIRE(w1.GetExercises().size() == 2);
 }
+
+
 

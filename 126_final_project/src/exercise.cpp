@@ -41,7 +41,7 @@ void Exercise::AddWeight(int weight) {
 	weights_.push_back(weight);
 }
 
-void Exercise::GetMuscle() {
+string Exercise::GetMuscle() {
 	return muscle_;
 }
 
