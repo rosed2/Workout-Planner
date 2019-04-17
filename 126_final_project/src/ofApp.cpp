@@ -1,8 +1,10 @@
 #include "ofApp.h"
+#include "parser.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+	Parser parser = Parser();
+	exercises = parser.ReadExercises();
 }
 
 //--------------------------------------------------------------
@@ -12,7 +14,15 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	ofBackground(0);
 
+	ofSetHexColor(0x00FF00);
+
+	std::stringstream ss;
+
+	ss << "vector size: " << exercises.size() << std::endl;
+
+	ofDrawBitmapString(ss.str(), 10, 14);
 }
 
 //--------------------------------------------------------------

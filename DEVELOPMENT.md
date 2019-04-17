@@ -15,3 +15,4 @@ and print out the data it contains.
 1. 4-15-19 Add tests for Exercise, WorkoutPlan, and Library
 1. 4-16-19 Add search functions to Library and add muscle_ member to Exercise
 1. 4-17-19 Update tests to reflect change in Exercise
+1. 4-17-19 Create Parser class, can successfully parse an array of exercises from a JSON file
