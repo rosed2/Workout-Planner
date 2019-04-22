@@ -9,7 +9,7 @@
 using std::string;
 using std::vector;
 
-Library::Library(vector<WorkoutPlan> workout_plans, vector<Exercise> exercises) {
+Library::Library(vector<WorkoutPlan>* workout_plans, vector<Exercise>* exercises) {
 	workout_plans_ = workout_plans;
 	all_exercises_ = exercises;
 }
@@ -21,14 +21,14 @@ Library::~Library() {
 vector<WorkoutPlan> Library::SearchForPlanByName(string name) {
 	vector<WorkoutPlan> to_return;
 
-	for (int i = 0; i < workout_plans_.size(); i++) {
-		string lowercase = workout_plans_[i].GetName();
+	for (int i = 0; i < workout_plans_->size(); i++) {
+		string lowercase = (*workout_plans_)[i].GetName();
 
 		std::transform(lowercase.begin(), lowercase.end(), lowercase.begin(), ::tolower);
 		std::transform(name.begin(), name.end(), name.begin(), ::tolower);
 
 		if (lowercase.find(name) != std::string::npos) {
-			to_return.push_back(workout_plans_[i]);
+			to_return.push_back((*workout_plans_)[i]);
 		}
 	}
 	return to_return;
@@ -37,23 +37,23 @@ vector<WorkoutPlan> Library::SearchForPlanByName(string name) {
 //Finds the workout plans in the library that have an exercise with a given name
 vector<WorkoutPlan> Library::SearchForPlanByExercise(string name) {
 	vector<WorkoutPlan> to_return;
-	for (int i = 0; i < workout_plans_.size(); i++) {
-		if (workout_plans_[i].ContainsExercise(name)) {
-			to_return.push_back(workout_plans_[i]);
+	for (int i = 0; i < workout_plans_->size(); i++) {
+		if ((*workout_plans_)[i].ContainsExercise(name)) {
+			to_return.push_back((*workout_plans_)[i]);
 		}
 	}
 	return to_return;
 }
 
 void Library::AddWorkoutPlan(WorkoutPlan plan) {
-	workout_plans_.push_back(plan);
+	workout_plans_->push_back(plan);
 }
 
-vector<WorkoutPlan> Library::GetWorkoutPlans() {
+vector<WorkoutPlan>* Library::GetWorkoutPlans() {
 	return workout_plans_;
 }
 
-vector<Exercise> Library::GetAllExercises() {
+vector<Exercise>* Library::GetAllExercises() {
 	return all_exercises_;
 }
 
@@ -61,14 +61,14 @@ vector<Exercise> Library::GetAllExercises() {
 vector<Exercise> Library::SearchForExercisesByName(string name) {
 	vector<Exercise> to_return;
 
-	for (int i = 0; i < all_exercises_.size(); i++) {
-		string lowercase = all_exercises_[i].GetName();
+	for (int i = 0; i < all_exercises_->size(); i++) {
+		string lowercase = (*all_exercises_)[i].GetName();
 
 		std::transform(lowercase.begin(), lowercase.end(), lowercase.begin(), ::tolower);
 		std::transform(name.begin(), name.end(), name.begin(), ::tolower);
 
 		if (lowercase.find(name) != std::string::npos) {
-			to_return.push_back(all_exercises_[i]);
+			to_return.push_back((*all_exercises_)[i]);
 		}
 	}
 	return to_return;
@@ -78,14 +78,14 @@ vector<Exercise> Library::SearchForExercisesByName(string name) {
 vector<Exercise> Library::SearchForExercisesByMuscle(string name) {
 	vector<Exercise> to_return;
 
-	for (int i = 0; i < all_exercises_.size(); i++) {
-		string lowercase = all_exercises_[i].GetMuscle();
+	for (int i = 0; i < all_exercises_->size(); i++) {
+		string lowercase = (*all_exercises_)[i].GetMuscle();
 
 		std::transform(lowercase.begin(), lowercase.end(), lowercase.begin(), ::tolower);
 		std::transform(name.begin(), name.end(), name.begin(), ::tolower);
 
 		if (lowercase.find(name) != std::string::npos) {
-			to_return.push_back(all_exercises_[i]);
+			to_return.push_back((*all_exercises_)[i]);
 		}
 	}
 	return to_return;
@@ -95,14 +95,14 @@ vector<Exercise> Library::SearchForExercisesByMuscle(string name) {
 vector<Exercise> Library::SearchForExercisesByEquipment(string name) {
 	vector<Exercise> to_return;
 
-	for (int i = 0; i < all_exercises_.size(); i++) {
-		string lowercase = all_exercises_[i].GetEquipment();
+	for (int i = 0; i < all_exercises_->size(); i++) {
+		string lowercase = (*all_exercises_)[i].GetEquipment();
 
 		std::transform(lowercase.begin(), lowercase.end(), lowercase.begin(), ::tolower);
 		std::transform(name.begin(), name.end(), name.begin(), ::tolower);
 
 		if (lowercase.find(name) != std::string::npos) {
-			to_return.push_back(all_exercises_[i]);
+			to_return.push_back((*all_exercises_)[i]);
 		}
 	}
 	return to_return;

@@ -2,6 +2,9 @@
 
 #include "ofMain.h"
 #include "exercise.h"
+#include "ofxGui.h"
+#include "library.h"
+#include "workout_plan.h"
 #include <vector>
 
 class ofApp : public ofBaseApp{
@@ -23,6 +26,13 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		std::vector<Exercise> exercises;
 		
+		Library library_;
+
+
+		ofxPanel gui;
+		ofxToggle toggle;
+		ofxButton create_workout_button_;
+		ofxButton search_for_exercises_button_;
+		ofxButton see_library_;
 };

@@ -1,10 +1,25 @@
 #include "ofApp.h"
 #include "parser.h"
+#include "exercise.h"
+#include "library.h"
+#include "workout_plan.h"
+#include <iostream>
+#include <vector>
+#include <string>
+using std::vector;
+using std::string;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
 	Parser parser = Parser();
-	exercises = parser.ReadExercises();
+	vector<Exercise> exercises = parser.ReadExercises();
+	vector<WorkoutPlan> workouts{};
+	library_ = Library(workouts, exercises);
+
+	gui.setup();
+	gui.add(create_workout_button_.setup("Create Workout"));
+	gui.add(search_for_exercises_button_.setup("Search For Exercises"));
+	gui.add(see_library_.setup("See Library of Workout Plans"));
 }
 
 //--------------------------------------------------------------
@@ -18,11 +33,31 @@ void ofApp::draw(){
 
 	ofSetHexColor(0x00FF00);
 
-	std::stringstream ss;
+	gui.draw();
 
-	ss << "vector size: " << exercises.size() << std::endl;
+	if (create_workout_button_) {
+		std::cout << "clicked workout" << std::endl;
+		std::string input;
+		input = ofSystemTextBoxDialog("Search for Workout Name", input);
+		std::cout << input << std::endl;
+	} else if (search_for_exercises_button_) {
+		std::cout << "clicked search" << std::endl;
+		std::string input;
+		input = ofSystemTextBoxDialog("Search for Exercises", input);
+		vector<Exercise> results = library_.SearchForExercisesByName(input);
+		std::stringstream ss;
+		for (int i = 0; i < results.size(); i++) {
+			ss << results[i].GetName() << std::endl;
+		}
+		ofDrawBitmapString(ss.str(), 10, 14);
+	}
 
-	ofDrawBitmapString(ss.str(), 10, 14);
+	
+
+	
+
+	
+
 }
 
 //--------------------------------------------------------------
@@ -47,7 +82,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+	
 }
 
 //--------------------------------------------------------------

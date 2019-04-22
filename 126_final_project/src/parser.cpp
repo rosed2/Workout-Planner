@@ -44,9 +44,6 @@ vector<Exercise> Parser::ReadExercises() {
 		Exercise to_add = Exercise(name, muscle, equipment);
 		to_return.push_back(to_add);
 	}
-	
-	cout << to_return[0].GetName() << " " << to_return[0].GetMuscle() << std::endl;
-	cout << to_return[0].GetEquipment() << std::endl;
 
 	return to_return;
 }
