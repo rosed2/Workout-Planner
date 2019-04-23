@@ -9,6 +9,8 @@
 using std::vector;
 using std::string;
 
+//Got text pop up from https://forum.openframeworks.cc/t/workaround-ofxgui-text-input/19630/3
+
 //--------------------------------------------------------------
 void ofApp::setup(){
 	
@@ -16,14 +18,14 @@ void ofApp::setup(){
 	exercises_ = parser.ReadExercises();
 	library_ = Library(&workout_plans_, &exercises_);
 
-	search_for_exercises_button_.addListener(this, &ofApp::SearchForExerciseByName);
-	create_workout_button_.addListener(this, &ofApp::CreateWorkout);
-	see_library_button_.addListener(this, &ofApp::SeeLibrary);
+	ofSetWindowPosition(0, 0);
 
-	gui.setup();
-	gui.add(create_workout_button_.setup("Create Workout"));
-	gui.add(search_for_exercises_button_.setup("Search For Exercises"));
-	gui.add(see_library_button_.setup("See Library of Workout Plans"));
+	gui = new ofxDatGui(ofxDatGuiAnchor::TOP_RIGHT);
+	gui->addButton("Create Workout Plan");
+	gui->addButton("Search For Exercises");
+	gui->addButton("See Library of Workout Plans");
+	gui->onButtonEvent(this, &ofApp::onButtonEvent);
+
 }
 
 //--------------------------------------------------------------
@@ -36,9 +38,23 @@ void ofApp::draw(){
 
 	ofSetHexColor(0x00FF00);
 
-	gui.draw();
+	//gui.draw();
 
 }
+
+
+void ofApp::onButtonEvent(ofxDatGuiButtonEvent e) {
+	if (e.target->is("Create Workout Plan")) {
+		CreateWorkout();
+	} else if (e.target->is("Search for Exercises")) {
+		SearchForExerciseByName();
+	} else if (e.target->is("See Library of Workout Plans")) {
+		SeeLibrary();
+	}
+}
+
+
+
 
 void ofApp::SearchForExerciseByName() {
 	std::string input;
@@ -57,7 +73,7 @@ void ofApp::SearchForExerciseByName() {
 
 void ofApp::SeeLibrary() {
 	vector<WorkoutPlan> results = *library_.GetWorkoutPlans();
-	std::cout << results.size() << std::endl;
+	std::cout << "Total number of workout plans in library: " << results.size() << std::endl;
 
 	for (int i = 0; i < results.size(); i++) {
 		std::cout << results[i] << std::endl;
@@ -65,13 +81,28 @@ void ofApp::SeeLibrary() {
 }
 
 void ofApp::CreateWorkout() {
+	std::string name;
+	name = ofSystemTextBoxDialog("Type Workout Plan Name", name);
+
 	Exercise ex1 = (*library_.GetAllExercises())[0];
 	Exercise ex2 = (*library_.GetAllExercises())[1];
 	vector<Exercise> vec{ ex1, ex2 };
-	WorkoutPlan w1 = WorkoutPlan("name", vec);
+	WorkoutPlan w1 = WorkoutPlan(name, vec);
 	library_.AddWorkoutPlan(w1);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //--------------------------------------------------------------

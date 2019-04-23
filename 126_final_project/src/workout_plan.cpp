@@ -55,8 +55,9 @@ void WorkoutPlan::AddExercise(Exercise ex) {
 }
 
 std::ostream& operator<<(std::ostream& stream, WorkoutPlan &c) {
+	stream << c.GetName() << std::endl;
 	for (int i = 0; i < c.GetExercises().size(); i++) {
-		stream << c.GetExercises()[i].GetName() << std::endl;
+		stream << "   " << c.GetExercises()[i].GetName() << std::endl;
 	}
 	return stream;
 }

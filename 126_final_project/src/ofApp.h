@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "exercise.h"
-#include "ofxGui.h"
+#include "ofxDatGui.h"
 #include "library.h"
 #include "workout_plan.h"
 #include <vector>
@@ -35,10 +35,7 @@ class ofApp : public ofBaseApp{
 		std::vector<WorkoutPlan> workout_plans_;
 
 
-		ofxPanel gui;
-		ofxToggle toggle;
+		ofxDatGui* gui;
+		void onButtonEvent(ofxDatGuiButtonEvent e);
 
-		ofxButton create_workout_button_;
-		ofxButton search_for_exercises_button_;
-		ofxButton see_library_button_;
 };
