@@ -27,11 +27,13 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		void SearchForExerciseByNameButtonPressed();
-		void CreateWorkoutButtonPressed();
 		void SeeLibraryButtonPressed();
 
 		void SearchForExerciseByName(std::string);
+		void SearchForExerciseByMuscle(std::string);
+		void SearchForExerciseByEquipment(std::string);
+
+		void CreateWorkout(std::string);
 		
 		Library library_;
 		std::vector<Exercise> exercises_;

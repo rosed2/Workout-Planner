@@ -19,11 +19,5 @@ the exercise as applicable.
 	* I'll use this library to get data about different exercises from either a JSON file or 
 from an API call. 
 
-* ofxGui : https://openframeworks.cc/documentation/ofxGui/
+* ofxDatGui : https://github.com/braitsch/ofxDatGui
 	* I'll use this library to create the user interface.
-
-
-**Possible API**
-
-exercise : https://github.com/davejt/exercise
-This API contains data about 900 different exercises.
