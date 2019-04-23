@@ -28,9 +28,9 @@ vector<Exercise> vec1{ ex1, ex2 };
 vector<Exercise> vec2{ ex2, ex3 };
 vector<Exercise> vec3{ ex3 };
 
-WorkoutPlan w1 = WorkoutPlan("Plan 1", &vec1);
-WorkoutPlan w2 = WorkoutPlan("Plan 2", &vec2);
-WorkoutPlan w3 = WorkoutPlan("Plan 3", &vec3);
+WorkoutPlan w1 = WorkoutPlan("Plan 1", vec1);
+WorkoutPlan w2 = WorkoutPlan("Plan 2", vec2);
+WorkoutPlan w3 = WorkoutPlan("Plan 3", vec3);
 
 
 //---------------------Tests for GetWorkoutPlans----------

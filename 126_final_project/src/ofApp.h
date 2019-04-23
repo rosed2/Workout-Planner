@@ -26,13 +26,19 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+		void SearchForExerciseByName();
+		void CreateWorkout();
+		void SeeLibrary();
 		
 		Library library_;
+		std::vector<Exercise> exercises_;
+		std::vector<WorkoutPlan> workout_plans_;
 
 
 		ofxPanel gui;
 		ofxToggle toggle;
+
 		ofxButton create_workout_button_;
 		ofxButton search_for_exercises_button_;
-		ofxButton see_library_;
+		ofxButton see_library_button_;
 };

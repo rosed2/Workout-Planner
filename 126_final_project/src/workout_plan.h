@@ -8,17 +8,19 @@
 class WorkoutPlan 
 {
 public:
-	WorkoutPlan(std::string, std::vector<Exercise>*);
+	WorkoutPlan(std::string, std::vector<Exercise>);
 	~WorkoutPlan();
 	std::string GetName();
-	std::vector<Exercise>* GetExercises();
+	std::vector<Exercise> GetExercises();
 	void SetName(std::string);
-	void SetExercises(std::vector<Exercise>*);
+	void SetExercises(std::vector<Exercise>);
 	bool ContainsExercise(std::string);
 	void AddExercise(Exercise);
 
+	friend std::ostream& operator<<(std::ostream& stream, WorkoutPlan &c);
+
 private:
 	std::string name_;
-	std::vector<Exercise>* exercises_;
+	std::vector<Exercise> exercises_;
 
 };

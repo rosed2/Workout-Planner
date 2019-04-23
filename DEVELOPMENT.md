@@ -16,3 +16,13 @@ and print out the data it contains.
 1. 4-16-19 Add search functions to Library and add muscle_ member to Exercise
 1. 4-17-19 Update tests to reflect change in Exercise
 1. 4-17-19 Create Parser class, can successfully parse an array of exercises from a JSON file
+1. 4-22-19 Change vector variable members in WorkoutPlan and Library to pointers to vectors
+1. 4-22-19 Trying to figure out how to call a function once a button is pressed
+1. 4-22-19 Learned about adding a listener per button
+1. 4-22-19 Getting error when I call SearchForExerciseByName on the library object, inside method
+call it has the wrong size vector of exercises
+1. 4-22-19 Figured out that I was setting a pointer to the address of a temp variable
+1. 4-22-19 Running into problem where I create a temporary vector and set a WorkoutPlan's 
+pointer variable to the address of the temp vector
+1. 4-22-19 Decided to make WorkoutPlan's member variable a vector, not a pointer to a variable
+

@@ -6,12 +6,17 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <iostream>
 using std::string;
 using std::vector;
 
 Library::Library(vector<WorkoutPlan>* workout_plans, vector<Exercise>* exercises) {
 	workout_plans_ = workout_plans;
 	all_exercises_ = exercises;
+}
+
+Library::Library() {
+
 }
 
 Library::~Library() {
@@ -70,9 +75,12 @@ vector<Exercise> Library::SearchForExercisesByName(string name) {
 		if (lowercase.find(name) != std::string::npos) {
 			to_return.push_back((*all_exercises_)[i]);
 		}
+
+		
 	}
 	return to_return;
 }
+
 
 //Finds the exercises in the library that use a certain muscle group
 vector<Exercise> Library::SearchForExercisesByMuscle(string name) {
@@ -107,3 +115,4 @@ vector<Exercise> Library::SearchForExercisesByEquipment(string name) {
 	}
 	return to_return;
 }
+

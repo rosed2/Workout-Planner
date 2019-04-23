@@ -11,20 +11,23 @@ using std::string;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	
 	Parser parser = Parser();
-	vector<Exercise> exercises = parser.ReadExercises();
-	vector<WorkoutPlan> workouts{};
-	library_ = Library(workouts, exercises);
+	exercises_ = parser.ReadExercises();
+	library_ = Library(&workout_plans_, &exercises_);
+
+	search_for_exercises_button_.addListener(this, &ofApp::SearchForExerciseByName);
+	create_workout_button_.addListener(this, &ofApp::CreateWorkout);
+	see_library_button_.addListener(this, &ofApp::SeeLibrary);
 
 	gui.setup();
 	gui.add(create_workout_button_.setup("Create Workout"));
 	gui.add(search_for_exercises_button_.setup("Search For Exercises"));
-	gui.add(see_library_.setup("See Library of Workout Plans"));
+	gui.add(see_library_button_.setup("See Library of Workout Plans"));
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
 }
 
 //--------------------------------------------------------------
@@ -35,30 +38,41 @@ void ofApp::draw(){
 
 	gui.draw();
 
-	if (create_workout_button_) {
-		std::cout << "clicked workout" << std::endl;
-		std::string input;
-		input = ofSystemTextBoxDialog("Search for Workout Name", input);
-		std::cout << input << std::endl;
-	} else if (search_for_exercises_button_) {
-		std::cout << "clicked search" << std::endl;
-		std::string input;
-		input = ofSystemTextBoxDialog("Search for Exercises", input);
-		vector<Exercise> results = library_.SearchForExercisesByName(input);
-		std::stringstream ss;
-		for (int i = 0; i < results.size(); i++) {
-			ss << results[i].GetName() << std::endl;
-		}
-		ofDrawBitmapString(ss.str(), 10, 14);
+}
+
+void ofApp::SearchForExerciseByName() {
+	std::string input;
+
+	input = ofSystemTextBoxDialog("Search for Exercises", input);
+
+	vector<Exercise> results = library_.SearchForExercisesByName(input);
+	std::stringstream ss;
+
+	for (int i = 0; i < results.size(); i++) {
+		std::cout << results[i].GetName() << std::endl;
 	}
 
-	
+	ofDrawBitmapString(ss.str(), 10, 14);
+}
 
-	
+void ofApp::SeeLibrary() {
+	vector<WorkoutPlan> results = *library_.GetWorkoutPlans();
+	std::cout << results.size() << std::endl;
 
-	
+	for (int i = 0; i < results.size(); i++) {
+		std::cout << results[i] << std::endl;
+	}
+}
+
+void ofApp::CreateWorkout() {
+	Exercise ex1 = (*library_.GetAllExercises())[0];
+	Exercise ex2 = (*library_.GetAllExercises())[1];
+	vector<Exercise> vec{ ex1, ex2 };
+	WorkoutPlan w1 = WorkoutPlan("name", vec);
+	library_.AddWorkoutPlan(w1);
 
 }
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){

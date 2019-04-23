@@ -11,6 +11,7 @@ class Library
 {
 public:
 	Library(std::vector<WorkoutPlan>*, std::vector<Exercise>*);
+	Library();
 	~Library();
 	std::vector<WorkoutPlan> SearchForPlanByName(std::string);
 	std::vector<WorkoutPlan> SearchForPlanByExercise(std::string);

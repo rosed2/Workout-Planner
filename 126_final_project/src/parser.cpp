@@ -28,7 +28,7 @@ vector<Exercise> Parser::ReadExercises() {
 		return to_return;
 	}
 
-	//Lines 26-31 from https://stackoverflow.com/questions/46203948/reading-array-of-the-json-in-jsoncpp
+	//Lines 33-38 from https://stackoverflow.com/questions/46203948/reading-array-of-the-json-in-jsoncpp
 
 	Json::Reader reader;
 	Json::Value root;
