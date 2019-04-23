@@ -20,22 +20,30 @@ void ofApp::setup(){
 
 	ofSetWindowPosition(0, 0);
 
-	gui = new ofxDatGui(ofxDatGuiAnchor::TOP_RIGHT);
+	gui = new ofxDatGui(ofxDatGuiAnchor::TOP_LEFT);
+	gui->setTheme(new ofxDatGuiThemeMidnight);
 	/*gui->addButton("Create Workout Plan");
 	gui->addButton("Search For Exercises");*/
 
-	gui->addButton("See Library of Workout Plans");
+	gui->addHeader(":: drag me to reposition ::");
+
+	ofxDatGuiButton* see_library_ = gui->addButton("See Library of Workout Plans");
+	see_library_->setPosition(1700, 1700);
 	gui->onButtonEvent(this, &ofApp::onButtonEvent);
 
+	gui->addBreak()->setHeight(900.0f);
+
 	ofxDatGuiFolder* folder_search_ = gui->addFolder("Search for Exercises", ofColor::white);
+	folder_search_->setWidth(1700, 1350);
 	ofxDatGuiTextInput* exercise_name_ = folder_search_->addTextInput("Exercise Name", "");
+	exercise_name_->setWidth(1700, 1350);
 	ofxDatGuiTextInput* muscle_name_ = folder_search_->addTextInput("Muscle Name", "");
 	ofxDatGuiTextInput* equipment_name_ = folder_search_->addTextInput("Equipment Name", "");
 	exercise_name_->onTextInputEvent(this, &ofApp::onTextInputEvent);
 	muscle_name_->onTextInputEvent(this, &ofApp::onTextInputEvent);
 	equipment_name_->onTextInputEvent(this, &ofApp::onTextInputEvent);
 
-	gui->addBreak();
+	gui->addBreak()->setHeight(900.0f);
 
 	ofxDatGuiFolder* folder_create_workout_ = gui->addFolder("Create Workout Plan", ofColor::red);
 	ofxDatGuiTextInput* workout_name_ = folder_create_workout_->addTextInput("Workout Plan Name", "");
@@ -50,7 +58,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofBackground(0);
+	ofBackground(ofColor::lightGray);
 
 	ofSetHexColor(0x00FF00);
 

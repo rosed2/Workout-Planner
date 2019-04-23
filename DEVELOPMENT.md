@@ -35,3 +35,4 @@ pointer variable to the address of the temp vector
 1. *4-22-19* Figured out how to create text input field using ofxDatGui
 1. *4-22-19* Created multiple text boxes to search for exercises by different criteria
 1. *4-22-19* Decided to get rid of buttons for a couple activities and use folders instead
+1. *4-22-19* Figured out how to increase font size and increase width of buttons
