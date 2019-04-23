@@ -1,6 +1,6 @@
 # Work Log
 
-##Week 1
+## Week 1
 1. 4-7-19 Came up with project proposal.
 1. 4-7-19 Found an api that contains information about different exercises but still trying to make
 it work as it runs on localhost. I plan on getting data from a JSON file and then implementing 
@@ -11,7 +11,7 @@ and sliders that interact with another class.
 and print out the data it contains. 
 1. 4-10-19 Successfully learned how to get an array from a JSON file.
 
-##Week 2
+## Week 2
 1. 4-15-19 Finished creating JSON file of exercises.
 1. 4-15-19 Create classes for Exercise, WorkoutPlan, and Library
 1. 4-15-19 Add functions to Exercise, WorkoutPlan, and Library
@@ -20,16 +20,16 @@ and print out the data it contains.
 1. 4-17-19 Update tests to reflect change in Exercise
 1. 4-17-19 Create Parser class, can successfully parse an array of exercises from a JSON file
 
-##Week 3
+## Week 3
 1. 4-22-19 Change vector variable members in WorkoutPlan and Library to pointers to vectors
 1. 4-22-19 Trying to figure out how to call a function once a button is pressed
 1. 4-22-19 Learned about adding a listener per button
 1. 4-22-19 Getting error when I call SearchForExerciseByName on the library object, inside method
 call it has the wrong size vector of exercises
-1. 4-22-19 Figured out that I was setting a pointer to the address of a temp variable
+	1. 4-22-19 Figured out that I was setting a pointer to the address of a temp variable
 1. 4-22-19 Running into problem where I create a temporary vector and set a WorkoutPlan's 
 pointer variable to the address of the temp vector
-1. 4-22-19 Decided to make WorkoutPlan's member variable a vector, not a pointer to a variable
+	1. 4-22-19 Decided to make WorkoutPlan's member variable a vector, not a pointer to a variable
 1. 4-22-19 Found another addon called ofxDatGui to use drop down menus
-1. 4-22-19 Starting to get ofxDatGui to work, I'll use this addon instead of ofxGui
+	1. 4-22-19 Starting to get ofxDatGui to work, I'll use this addon instead of ofxGui
 
