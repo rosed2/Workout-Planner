@@ -6,6 +6,7 @@
 #include "library.h"
 #include "workout_plan.h"
 #include <vector>
+#include <string>
 
 class ofApp : public ofBaseApp{
 
@@ -26,9 +27,11 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		void SearchForExerciseByName();
-		void CreateWorkout();
-		void SeeLibrary();
+		void SearchForExerciseByNameButtonPressed();
+		void CreateWorkoutButtonPressed();
+		void SeeLibraryButtonPressed();
+
+		void SearchForExerciseByName(std::string);
 		
 		Library library_;
 		std::vector<Exercise> exercises_;
@@ -37,5 +40,5 @@ class ofApp : public ofBaseApp{
 
 		ofxDatGui* gui;
 		void onButtonEvent(ofxDatGuiButtonEvent e);
-
+		void onTextInputEvent(ofxDatGuiTextInputEvent e);
 };

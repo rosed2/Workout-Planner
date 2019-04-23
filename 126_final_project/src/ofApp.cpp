@@ -38,40 +38,45 @@ void ofApp::draw(){
 
 	ofSetHexColor(0x00FF00);
 
-	//gui.draw();
-
 }
 
 
 void ofApp::onButtonEvent(ofxDatGuiButtonEvent e) {
 	if (e.target->is("Create Workout Plan")) {
-		CreateWorkout();
+		CreateWorkoutButtonPressed();
 	} else if (e.target->is("Search for Exercises")) {
-		SearchForExerciseByName();
+		SearchForExerciseByNameButtonPressed();
 	} else if (e.target->is("See Library of Workout Plans")) {
-		SeeLibrary();
+		SeeLibraryButtonPressed();
+	}
+}
+
+void ofApp::onTextInputEvent(ofxDatGuiTextInputEvent e) {
+	if (e.target->is("Exercise Name")) {
+		SearchForExerciseByName(e.text);
 	}
 }
 
 
 
 
-void ofApp::SearchForExerciseByName() {
-	std::string input;
+void ofApp::SearchForExerciseByNameButtonPressed() {
+	ofxDatGuiTextInput* input = gui->addTextInput("Exercise Name", "");
+	input->onTextInputEvent(this, &ofApp::onTextInputEvent);
 
-	input = ofSystemTextBoxDialog("Search for Exercises", input);
+}
 
+void ofApp::SearchForExerciseByName(string input) {
 	vector<Exercise> results = library_.SearchForExercisesByName(input);
 	std::stringstream ss;
 
 	for (int i = 0; i < results.size(); i++) {
 		std::cout << results[i].GetName() << std::endl;
 	}
-
-	ofDrawBitmapString(ss.str(), 10, 14);
+	
 }
 
-void ofApp::SeeLibrary() {
+void ofApp::SeeLibraryButtonPressed() {
 	vector<WorkoutPlan> results = *library_.GetWorkoutPlans();
 	std::cout << "Total number of workout plans in library: " << results.size() << std::endl;
 
@@ -80,7 +85,7 @@ void ofApp::SeeLibrary() {
 	}
 }
 
-void ofApp::CreateWorkout() {
+void ofApp::CreateWorkoutButtonPressed() {
 	std::string name;
 	name = ofSystemTextBoxDialog("Type Workout Plan Name", name);
 

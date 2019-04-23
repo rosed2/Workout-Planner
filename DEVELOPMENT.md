@@ -32,4 +32,4 @@ pointer variable to the address of the temp vector
 	1. 4-22-19 Decided to make WorkoutPlan's member variable a vector, not a pointer to a variable
 1. 4-22-19 Found another addon called ofxDatGui to use drop down menus
 	1. 4-22-19 Starting to get ofxDatGui to work, I'll use this addon instead of ofxGui
-
+1. 4-22-19 Figured out how to create text input field using ofxDatGui
