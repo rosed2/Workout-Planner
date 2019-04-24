@@ -23,26 +23,39 @@ void ofApp::setup(){
 	ofSetWindowPosition(0, 0);
 	int width = ofGetScreenWidth() * .9;
 	int height = ofGetScreenHeight() * .9;
+	int first_height = 40;
+	int first_width = 180;
 	ofSetWindowShape(width, height);
 	ofSetWindowPosition((ofGetScreenWidth() / 2) - (width / 2), 0);
 
+	//Title
+	title_ = new ofxDatGuiLabel("Workout Planner");
+	title_->setPosition(ofGetScreenWidth() / 3, 0);
+	title_->setLabelAlignment(ofxDatGuiAlignment::CENTER);
+	title_->setBackgroundColor(ofColor::blueSteel);
+	title_->setLabelColor(ofColor::floralWhite);
+	title_->setStripeVisible(false);
+
 	//Create gui
-	guiSeeLibrary = new ofxDatGui(ofxDatGuiAnchor::TOP_LEFT);
+	guiSeeLibrary = new ofxDatGui();
+	guiSeeLibrary->setPosition(first_width, first_height);
 	guiSeeLibrary->setTheme(new ofxDatGuiThemeAqua);
 
 	guiSearchForExercise = new ofxDatGui();
 	guiSearchForExercise->setTheme(new ofxDatGuiThemeAqua);
-	guiSearchForExercise->setPosition(guiSeeLibrary->getWidth() + 10, 0);
+	guiSearchForExercise->setPosition(first_width + guiSeeLibrary->getWidth() + 10, first_height);
 
 	guiCreateWorkout = new ofxDatGui();
 	guiCreateWorkout->setTheme(new ofxDatGuiThemeAqua);
-	guiCreateWorkout->setPosition(guiSeeLibrary->getWidth() + guiSearchForExercise->getWidth() + 20, 0);
+	guiCreateWorkout->setPosition(first_width + guiSeeLibrary->getWidth() + 
+											guiSearchForExercise->getWidth() + 20, first_height);
 	/*gui->addButton("Create Workout Plan");
 	gui->addButton("Search For Exercises");*/
 
 
 	//Set up see library button
-	ofxDatGuiFolder* see_library_folder_ = guiSeeLibrary->addFolder("Search Library for Workout Plans", ofColor::white);
+	ofxDatGuiFolder* see_library_folder_ = 
+		guiSeeLibrary->addFolder("Search Library for Workout Plans", ofColor::white);
 	ofxDatGuiButton* see_whole_library_ = see_library_folder_->addButton("See All Workout Plans");
 	guiSeeLibrary->onButtonEvent(this, &ofApp::onButtonSeeLibrary);
 	ofxDatGuiTextInput* library_workout_name_ = see_library_folder_->addTextInput("Workout Name", "");
@@ -52,38 +65,43 @@ void ofApp::setup(){
 
 
 	//Set up search for exercise function
-	ofxDatGuiFolder* folder_search_ = guiSearchForExercise->addFolder("Search Library for Exercises", ofColor::white);
-	folder_search_->setWidth(1700, 1350);
+	ofxDatGuiFolder* folder_search_ = guiSearchForExercise->addFolder("Search Library for Exercises",
+																				ofColor::white);
 	ofxDatGuiTextInput* exercise_name_ = folder_search_->addTextInput("Exercise Name", "");
-	exercise_name_->setWidth(1700, 1350);
 	ofxDatGuiTextInput* muscle_name_ = folder_search_->addTextInput("Muscle Name", "");
 	ofxDatGuiTextInput* equipment_name_ = folder_search_->addTextInput("Equipment Name", "");
 	exercise_name_->onTextInputEvent(this, &ofApp::onTextSearchExercise);
 	muscle_name_->onTextInputEvent(this, &ofApp::onTextSearchExercise);
 	equipment_name_->onTextInputEvent(this, &ofApp::onTextSearchExercise);
 
-	//gui->addBreak()->setHeight(900.0f);
 
 	//Set up create workout function
-	ofxDatGuiFolder* folder_create_workout_ = guiCreateWorkout->addFolder("Create Workout Plan", ofColor::red);
+	ofxDatGuiFolder* folder_create_workout_ = guiCreateWorkout->addFolder("Create Workout Plan", 
+																				ofColor::red);
 	ofxDatGuiTextInput* workout_name_ = folder_create_workout_->addTextInput("Workout Plan Name", "");
 	workout_name_->onTextInputEvent(this, &ofApp::onTextCreateWorkout);
 
+
 	//Scroll view for search for exercises
-	scroll_search_exercises_ = new ofxDatGuiScrollView("Exercises", 8);
-	scroll_search_exercises_->setPosition(guiSeeLibrary->getWidth() + 10,
-		4*guiSearchForExercise->getHeight() + 10);
+	scroll_search_exercises_ = new ofxDatGuiScrollView("Exercises", 15);
+	scroll_search_exercises_->setPosition(first_width + guiSeeLibrary->getWidth() + 10,
+		first_height + 4*guiSearchForExercise->getHeight() + 10);
 	scroll_search_exercises_->onScrollViewEvent(this, &ofApp::addExerciseToWorkout);
+	scroll_search_exercises_->setBackgroundColor(ofColor::lightGray);
+
 
 	//Scroll view for library
 	scroll_see_library_ = new ofxDatGuiScrollView("Library of Workouts", 8);
-	scroll_see_library_->setPosition(0, 4*guiSeeLibrary->getHeight() + 10);
+	scroll_see_library_->setPosition(first_width, first_height + 4*guiSeeLibrary->getHeight() + 10);
 	scroll_see_library_->onScrollViewEvent(this, &ofApp::onScrollSeeLibrary);
+	scroll_see_library_->setBackgroundColor(ofColor::lightGray);
+
 
 	//Scroll view for workouts
 	scroll_see_workout_ = new ofxDatGuiScrollView("Workouts", 8);
-	scroll_see_workout_->setPosition(0, 4*guiSeeLibrary->getHeight() + scroll_see_library_->getHeight() + 20);
-	
+	scroll_see_workout_->setPosition(first_width, first_height + 4*guiSeeLibrary->getHeight() 
+		+ scroll_see_library_->getHeight() + 20);
+	scroll_see_workout_->setBackgroundColor(ofColor::lightGray);
 }
 
 //--------------------------------------------------------------
@@ -98,6 +116,7 @@ void ofApp::draw(){
 	ofBackground(ofColor::lightGray);
 
 	ofSetHexColor(0x00FF00);
+	title_->draw();
 	scroll_search_exercises_->draw();
 	scroll_see_library_->draw();
 	scroll_see_workout_->draw();
@@ -144,12 +163,14 @@ void ofApp::onTextCreateWorkout(ofxDatGuiTextInputEvent e) {
 void ofApp::onTextSeeLibrary(ofxDatGuiTextInputEvent e) {
 	if (e.target->is("Workout Name")) {
 		vector<WorkoutPlan> results = library_.SearchForPlanByName(e.text);
+		scroll_see_workout_->clear();
 		scroll_see_library_->clear();
 		for (int i = 0; i < results.size(); i++) {
 			scroll_see_library_->add(results[i].GetName());
 		}
 	} else if (e.target->is("Exercise Name")) {
 		vector<WorkoutPlan> results = library_.SearchForPlanByExercise(e.text);
+		scroll_see_workout_->clear();
 		scroll_see_library_->clear();
 		for (int i = 0; i < results.size(); i++) {
 			scroll_see_library_->add(results[i].GetName());
@@ -166,6 +187,8 @@ void ofApp::SearchForExerciseByName(string input) {
 
 	for (int i = 0; i < results.size(); i++) {
 		scroll_search_exercises_->add(results[i].GetName());
+		scroll_search_exercises_->add("		Muscle: " + results[i].GetMuscle());
+		scroll_search_exercises_->add("		Equipment: " + results[i].GetEquipment());
 	}
 
 }
@@ -176,6 +199,8 @@ void ofApp::SearchForExerciseByMuscle(string input) {
 
 	for (int i = 0; i < results.size(); i++) {
 		scroll_search_exercises_->add(results[i].GetName());
+		scroll_search_exercises_->add("		Muscle: " + results[i].GetMuscle());
+		scroll_search_exercises_->add("		Equipment: " + results[i].GetEquipment());
 	}
 }
 
@@ -185,6 +210,8 @@ void ofApp::SearchForExerciseByEquipment(string input) {
 
 	for (int i = 0; i < results.size(); i++) {
 		scroll_search_exercises_->add(results[i].GetName());
+		scroll_search_exercises_->add("		Muscle: " + results[i].GetMuscle());
+		scroll_search_exercises_->add("		Equipment: " + results[i].GetEquipment());
 	}
 }
 

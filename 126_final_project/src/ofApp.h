@@ -37,7 +37,7 @@ class ofApp : public ofBaseApp{
 		std::vector<Exercise> exercises_;
 		std::vector<WorkoutPlan> workout_plans_;
 
-
+		ofxDatGuiLabel* title_;
 		ofxDatGui* guiSeeLibrary;
 		ofxDatGui* guiSearchForExercise;
 		ofxDatGui* guiCreateWorkout;
