@@ -44,7 +44,10 @@ class ofApp : public ofBaseApp{
 		ofxDatGui* guiSearchForExercise;
 		ofxDatGui* guiCreateWorkout;
 		void onButtonEvent(ofxDatGuiButtonEvent e);
-		void onTextInputEvent(ofxDatGuiTextInputEvent e);
+		void onTextSearchExercise(ofxDatGuiTextInputEvent e);
+
+		void onTextCreateWorkout(ofxDatGuiTextInputEvent e);
+		void onTextSeeLibrary(ofxDatGuiTextInputEvent e);
 
 		ofxDatGuiScrollView* scroll_search_exercises_;
 		void addExerciseToWorkout(ofxDatGuiScrollViewEvent e);

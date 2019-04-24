@@ -38,3 +38,5 @@ pointer variable to the address of the temp vector
 1. *4-22-19* Figured out how to increase font size and increase width of buttons
 1. *4-23-19* Decided to use ofxDatGuiScrollView to display the exercises after searching
 	1. *4-23-19* Created scroll view that shows results of searching exercises
+	1. *4-23-19* Created scroll views that show library and exercises in each workout
+1. *4-23-19* Added feature to search library by workout name and exercise
