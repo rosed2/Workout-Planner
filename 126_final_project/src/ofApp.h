@@ -15,7 +15,7 @@ class ofApp : public ofBaseApp{
 		void update();
 		void draw();
 
-		void keyPressed(int key);
+		/*void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y );
 		void mouseDragged(int x, int y, int button);
@@ -25,7 +25,7 @@ class ofApp : public ofBaseApp{
 		void mouseExited(int x, int y);
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
+		void gotMessage(ofMessage msg);*/
 
 		void SeeLibraryButtonPressed();
 
@@ -40,7 +40,16 @@ class ofApp : public ofBaseApp{
 		std::vector<WorkoutPlan> workout_plans_;
 
 
-		ofxDatGui* gui;
+		ofxDatGui* guiSeeLibrary;
+		ofxDatGui* guiSearchForExercise;
+		ofxDatGui* guiCreateWorkout;
 		void onButtonEvent(ofxDatGuiButtonEvent e);
 		void onTextInputEvent(ofxDatGuiTextInputEvent e);
+
+		ofxDatGuiScrollView* scroll_search_exercises_;
+		void addExerciseToWorkout(ofxDatGuiScrollViewEvent e);
+
+		ofxDatGuiScrollView* scroll_see_library_;
+		void onScrollSeeLibrary(ofxDatGuiScrollViewEvent e);
+
 };
