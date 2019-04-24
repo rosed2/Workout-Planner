@@ -27,9 +27,9 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);*/
 
-		void SearchForExerciseByName(std::string);
-		void SearchForExerciseByMuscle(std::string);
-		void SearchForExerciseByEquipment(std::string);
+		void SearchForExerciseByName(std::string, ofxDatGuiScrollView*);
+		void SearchForExerciseByMuscle(std::string, ofxDatGuiScrollView*);
+		void SearchForExerciseByEquipment(std::string, ofxDatGuiScrollView*);
 
 		void CreateWorkout(std::string);
 		

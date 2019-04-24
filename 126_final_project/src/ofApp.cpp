@@ -49,8 +49,6 @@ void ofApp::setup(){
 	guiCreateWorkout->setTheme(new ofxDatGuiThemeAqua);
 	guiCreateWorkout->setPosition(first_width + guiSeeLibrary->getWidth() + 
 											guiSearchForExercise->getWidth() + 20, first_height);
-	/*gui->addButton("Create Workout Plan");
-	gui->addButton("Search For Exercises");*/
 
 
 	//Set up see library folder, button, text inputs
@@ -98,7 +96,7 @@ void ofApp::setup(){
 												guiSearchForExercise->getWidth() + 20, 
 										first_height + 6 * guiSearchForExercise->getHeight() + 10);
 	scroll_select_exercises_->onScrollViewEvent(this, &ofApp::onScrollAddExerciseToWorkout);
-	scroll_select_exercises_->setBackgroundColor(ofColor::black);
+	scroll_select_exercises_->setBackgroundColor(ofColor::lightGray);
 
 
 
@@ -114,12 +112,12 @@ void ofApp::setup(){
 
 
 	//Scroll views for library searching
-	scroll_see_library_ = new ofxDatGuiScrollView("Library of Workouts", 8);
+	scroll_see_library_ = new ofxDatGuiScrollView("Library of Workouts", 5);
 	scroll_see_library_->setPosition(first_width, first_height + 4*guiSeeLibrary->getHeight() + 10);
 	scroll_see_library_->onScrollViewEvent(this, &ofApp::onScrollSeeLibrary);
 	scroll_see_library_->setBackgroundColor(ofColor::lightGray);
 
-	scroll_see_workout_ = new ofxDatGuiScrollView("Workouts", 8);
+	scroll_see_workout_ = new ofxDatGuiScrollView("Workouts", 16);
 	scroll_see_workout_->setPosition(first_width, first_height + 4*guiSeeLibrary->getHeight() 
 		+ scroll_see_library_->getHeight() + 20);
 	scroll_see_workout_->setBackgroundColor(ofColor::lightGray);
@@ -167,11 +165,11 @@ void ofApp::onButtonSeeLibrary(ofxDatGuiButtonEvent e) {
 
 void ofApp::onTextSearchExercise(ofxDatGuiTextInputEvent e) {
 	if (e.target->is("Exercise Name")) {
-		SearchForExerciseByName(e.text);
+		SearchForExerciseByName(e.text, scroll_search_exercises_);
 	} else if (e.target->is("Muscle Name")) {
-		SearchForExerciseByMuscle(e.text);
+		SearchForExerciseByMuscle(e.text, scroll_search_exercises_);
 	} else if (e.target->is("Equipment Name")) {
-		SearchForExerciseByEquipment(e.text);
+		SearchForExerciseByEquipment(e.text, scroll_search_exercises_);
 	}
 }
 
@@ -181,34 +179,15 @@ void ofApp::onTextCreateWorkout(ofxDatGuiTextInputEvent e) {
 		new_workout_name = e.text;
 		new_workout_exercises.clear();
 	} else if (e.target->is("Exercise Name")) {
-		vector<Exercise> results = library_.SearchForExercisesByName(e.text);
-		scroll_select_exercises_->clear();
-
-		for (int i = 0; i < results.size(); i++) {
-			scroll_select_exercises_->add(results[i].GetName());
-			scroll_select_exercises_->add("		Muscle: " + results[i].GetMuscle());
-			scroll_select_exercises_->add("		Equipment: " + results[i].GetEquipment());
-		}
+		SearchForExerciseByName(e.text, scroll_select_exercises_);
 	} else if (e.target->is("Muscle Name")) {
-		vector<Exercise> results = library_.SearchForExercisesByMuscle(e.text);
-		scroll_select_exercises_->clear();
-
-		for (int i = 0; i < results.size(); i++) {
-			scroll_select_exercises_->add(results[i].GetName());
-			scroll_select_exercises_->add("		Muscle: " + results[i].GetMuscle());
-			scroll_select_exercises_->add("		Equipment: " + results[i].GetEquipment());
-		}
+		SearchForExerciseByMuscle(e.text, scroll_select_exercises_);
 	} else if (e.target->is("Equipment Name")) {
-		vector<Exercise> results = library_.SearchForExercisesByEquipment(e.text);
-		scroll_select_exercises_->clear();
-
-		for (int i = 0; i < results.size(); i++) {
-			scroll_select_exercises_->add(results[i].GetName());
-			scroll_select_exercises_->add("		Muscle: " + results[i].GetMuscle());
-			scroll_select_exercises_->add("		Equipment: " + results[i].GetEquipment());
-		}
+		SearchForExerciseByEquipment(e.text, scroll_select_exercises_);
 	}
 }
+
+
 
 void ofApp::onTextSeeLibrary(ofxDatGuiTextInputEvent e) {
 	if (e.target->is("Workout Name")) {
@@ -231,37 +210,37 @@ void ofApp::onTextSeeLibrary(ofxDatGuiTextInputEvent e) {
 
 
 
-void ofApp::SearchForExerciseByName(string input) {
+void ofApp::SearchForExerciseByName(string input, ofxDatGuiScrollView* scroll) {
 	vector<Exercise> results = library_.SearchForExercisesByName(input);
-	scroll_search_exercises_->clear();
+	scroll->clear();
 
 	for (int i = 0; i < results.size(); i++) {
-		scroll_search_exercises_->add(results[i].GetName());
-		scroll_search_exercises_->add("		Muscle: " + results[i].GetMuscle());
-		scroll_search_exercises_->add("		Equipment: " + results[i].GetEquipment());
+		scroll->add(results[i].GetName());
+		scroll->add("		Muscle: " + results[i].GetMuscle());
+		scroll->add("		Equipment: " + results[i].GetEquipment());
 	}
 
 }
 
-void ofApp::SearchForExerciseByMuscle(string input) {
+void ofApp::SearchForExerciseByMuscle(string input, ofxDatGuiScrollView* scroll) {
 	vector<Exercise> results = library_.SearchForExercisesByMuscle(input);
-	scroll_search_exercises_->clear();
+	scroll->clear();
 
 	for (int i = 0; i < results.size(); i++) {
-		scroll_search_exercises_->add(results[i].GetName());
-		scroll_search_exercises_->add("		Muscle: " + results[i].GetMuscle());
-		scroll_search_exercises_->add("		Equipment: " + results[i].GetEquipment());
+		scroll->add(results[i].GetName());
+		scroll->add("		Muscle: " + results[i].GetMuscle());
+		scroll->add("		Equipment: " + results[i].GetEquipment());
 	}
 }
 
-void ofApp::SearchForExerciseByEquipment(string input) {
+void ofApp::SearchForExerciseByEquipment(string input, ofxDatGuiScrollView* scroll) {
 	vector<Exercise> results = library_.SearchForExercisesByEquipment(input);
-	scroll_search_exercises_->clear();
+	scroll->clear();
 
 	for (int i = 0; i < results.size(); i++) {
-		scroll_search_exercises_->add(results[i].GetName());
-		scroll_search_exercises_->add("		Muscle: " + results[i].GetMuscle());
-		scroll_search_exercises_->add("		Equipment: " + results[i].GetEquipment());
+		scroll->add(results[i].GetName());
+		scroll->add("		Muscle: " + results[i].GetMuscle());
+		scroll->add("		Equipment: " + results[i].GetEquipment());
 	}
 }
 
@@ -295,6 +274,7 @@ void ofApp::onButtonDoneCreateWorkout(ofxDatGuiButtonEvent e) {
 	if (e.target->is("Done Creating Workout")) {
 		WorkoutPlan w1 = WorkoutPlan(new_workout_name, new_workout_exercises);
 		library_.AddWorkoutPlan(w1);
+		scroll_select_exercises_->clear();
 	}
 }
 
