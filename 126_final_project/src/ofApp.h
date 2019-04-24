@@ -27,8 +27,6 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);*/
 
-		void SeeLibraryButtonPressed();
-
 		void SearchForExerciseByName(std::string);
 		void SearchForExerciseByMuscle(std::string);
 		void SearchForExerciseByEquipment(std::string);
@@ -43,7 +41,7 @@ class ofApp : public ofBaseApp{
 		ofxDatGui* guiSeeLibrary;
 		ofxDatGui* guiSearchForExercise;
 		ofxDatGui* guiCreateWorkout;
-		void onButtonEvent(ofxDatGuiButtonEvent e);
+		void onButtonSeeLibrary(ofxDatGuiButtonEvent e);
 		void onTextSearchExercise(ofxDatGuiTextInputEvent e);
 
 		void onTextCreateWorkout(ofxDatGuiTextInputEvent e);

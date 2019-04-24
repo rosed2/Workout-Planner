@@ -42,9 +42,9 @@ void ofApp::setup(){
 
 
 	//Set up see library button
-	/*ofxDatGuiButton* see_library_ = guiSeeLibrary->addButton("See Library of Workout Plans");
-	guiSeeLibrary->onButtonEvent(this, &ofApp::onButtonEvent);*/
 	ofxDatGuiFolder* see_library_folder_ = guiSeeLibrary->addFolder("Search Library for Workout Plans", ofColor::white);
+	ofxDatGuiButton* see_whole_library_ = see_library_folder_->addButton("See All Workout Plans");
+	guiSeeLibrary->onButtonEvent(this, &ofApp::onButtonSeeLibrary);
 	ofxDatGuiTextInput* library_workout_name_ = see_library_folder_->addTextInput("Workout Name", "");
 	ofxDatGuiTextInput* library_exercise_name_ = see_library_folder_->addTextInput("Exercise Name", "");
 	library_workout_name_->onTextInputEvent(this, &ofApp::onTextSeeLibrary);
@@ -72,17 +72,17 @@ void ofApp::setup(){
 	//Scroll view for search for exercises
 	scroll_search_exercises_ = new ofxDatGuiScrollView("Exercises", 8);
 	scroll_search_exercises_->setPosition(guiSeeLibrary->getWidth() + 10,
-		4*guiSearchForExercise->getHeight());
+		4*guiSearchForExercise->getHeight() + 10);
 	scroll_search_exercises_->onScrollViewEvent(this, &ofApp::addExerciseToWorkout);
 
 	//Scroll view for library
 	scroll_see_library_ = new ofxDatGuiScrollView("Library of Workouts", 8);
-	scroll_see_library_->setPosition(0, 3*guiSeeLibrary->getHeight() + 10);
+	scroll_see_library_->setPosition(0, 4*guiSeeLibrary->getHeight() + 10);
 	scroll_see_library_->onScrollViewEvent(this, &ofApp::onScrollSeeLibrary);
 
 	//Scroll view for workouts
 	scroll_see_workout_ = new ofxDatGuiScrollView("Workouts", 8);
-	scroll_see_workout_->setPosition(0, 3*guiSeeLibrary->getHeight() + scroll_see_library_->getHeight() + 20);
+	scroll_see_workout_->setPosition(0, 4*guiSeeLibrary->getHeight() + scroll_see_library_->getHeight() + 20);
 	
 }
 
@@ -111,9 +111,14 @@ void ofApp::addExerciseToWorkout(ofxDatGuiScrollViewEvent e) {
 }
 
 
-void ofApp::onButtonEvent(ofxDatGuiButtonEvent e) {
-	if (e.target->is("See Library of Workout Plans")) {
-		SeeLibraryButtonPressed();
+void ofApp::onButtonSeeLibrary(ofxDatGuiButtonEvent e) {
+	if (e.target->is("See All Workout Plans")) {
+		vector<WorkoutPlan> results = *library_.GetWorkoutPlans();
+		scroll_see_library_->clear();
+
+		for (int i = 0; i < results.size(); i++) {
+			scroll_see_library_->add(results[i].GetName());
+		}
 	}
 }
 
@@ -183,14 +188,6 @@ void ofApp::SearchForExerciseByEquipment(string input) {
 	}
 }
 
-void ofApp::SeeLibraryButtonPressed() {
-	vector<WorkoutPlan> results = *library_.GetWorkoutPlans();
-	scroll_see_library_->clear();
-
-	for (int i = 0; i < results.size(); i++) {
-		scroll_see_library_->add(results[i].GetName());
-	}
-}
 
 void ofApp::onScrollSeeLibrary(ofxDatGuiScrollViewEvent e) {
 	scroll_see_workout_->clear();
