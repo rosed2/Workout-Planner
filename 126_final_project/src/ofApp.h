@@ -48,11 +48,17 @@ class ofApp : public ofBaseApp{
 		void onTextSeeLibrary(ofxDatGuiTextInputEvent e);
 
 		ofxDatGuiScrollView* scroll_search_exercises_;
-		void addExerciseToWorkout(ofxDatGuiScrollViewEvent e);
 
 		ofxDatGuiScrollView* scroll_see_library_;
 		void onScrollSeeLibrary(ofxDatGuiScrollViewEvent e);
-
 		ofxDatGuiScrollView* scroll_see_workout_;
+
+		//Things for creating workout
+		void onButtonDoneCreateWorkout(ofxDatGuiButtonEvent e);
+		ofxDatGuiScrollView* scroll_select_exercises_;
+		void onScrollAddExerciseToWorkout(ofxDatGuiScrollViewEvent e);
+		vector<Exercise> new_workout_exercises;
+		std::string new_workout_name;
+
 		//void onScrollSeeWorkout(ofxDatGuiScrollViewEvent e);
 };
