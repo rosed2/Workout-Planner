@@ -52,4 +52,6 @@ class ofApp : public ofBaseApp{
 		ofxDatGuiScrollView* scroll_see_library_;
 		void onScrollSeeLibrary(ofxDatGuiScrollViewEvent e);
 
+		ofxDatGuiScrollView* scroll_see_workout_;
+		//void onScrollSeeWorkout(ofxDatGuiScrollViewEvent e);
 };

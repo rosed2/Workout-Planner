@@ -65,18 +65,27 @@ void ofApp::setup(){
 	workout_name_->onTextInputEvent(this, &ofApp::onTextInputEvent);
 
 	//Scroll view for search for exercises
-	scroll_search_exercises_ = new ofxDatGuiScrollView("Exercises #1", 8);
+	scroll_search_exercises_ = new ofxDatGuiScrollView("Exercises", 8);
 	scroll_search_exercises_->setPosition(guiSeeLibrary->getWidth() + 10,
 		4*guiSearchForExercise->getHeight());
 	scroll_search_exercises_->onScrollViewEvent(this, &ofApp::addExerciseToWorkout);
 
 	//Scroll view for library
+	scroll_see_library_ = new ofxDatGuiScrollView("Library of Workouts", 8);
+	scroll_see_library_->setPosition(0, guiSeeLibrary->getHeight() + 10);
+	scroll_see_library_->onScrollViewEvent(this, &ofApp::onScrollSeeLibrary);
 
+	//Scroll view for workouts
+	scroll_see_workout_ = new ofxDatGuiScrollView("Workouts", 8);
+	scroll_see_workout_->setPosition(0, guiSeeLibrary->getHeight() + scroll_see_library_->getHeight() + 20);
+	
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 	scroll_search_exercises_->update();
+	scroll_see_library_->update();
+	scroll_see_workout_->update();
 }
 
 //--------------------------------------------------------------
@@ -85,7 +94,8 @@ void ofApp::draw(){
 
 	ofSetHexColor(0x00FF00);
 	scroll_search_exercises_->draw();
-
+	scroll_see_library_->draw();
+	scroll_see_workout_->draw();
 }
 
 
@@ -145,11 +155,29 @@ void ofApp::SearchForExerciseByEquipment(string input) {
 
 void ofApp::SeeLibraryButtonPressed() {
 	vector<WorkoutPlan> results = *library_.GetWorkoutPlans();
-	std::cout << "Total number of workout plans in library: " << results.size() << std::endl;
+	scroll_see_library_->clear();
+
+	for (int i = 0; i < results.size(); i++) {
+		scroll_see_library_->add(results[i].GetName());
+	}
+	/*std::cout << "Total number of workout plans in library: " << results.size() << std::endl;
 
 	for (int i = 0; i < results.size(); i++) {
 		std::cout << results[i] << std::endl;
+	}*/
+}
+
+void ofApp::onScrollSeeLibrary(ofxDatGuiScrollViewEvent e) {
+	scroll_see_workout_->clear();
+	scroll_see_workout_->add("Exercises");
+	std::string workout_name = e.target->getLabel();
+	vector<WorkoutPlan> workout = library_.SearchForPlanByName(workout_name);
+
+	vector<Exercise> results = workout[0].GetExercises();
+	for (int i = 0; i < results.size(); i++) {
+		scroll_see_workout_->add("	" + results[i].GetName());
 	}
+
 }
 
 
