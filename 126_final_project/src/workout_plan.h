@@ -9,6 +9,7 @@ class WorkoutPlan
 {
 public:
 	WorkoutPlan(std::string, std::vector<Exercise>);
+	WorkoutPlan();
 	~WorkoutPlan();
 	std::string GetName();
 	std::vector<Exercise> GetExercises();

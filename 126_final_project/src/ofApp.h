@@ -65,7 +65,7 @@ private:
 
 	vector<Exercise> new_workout_exercises;
 	std::string new_workout_name;
-	WorkoutPlan current_plan;
+	WorkoutPlan current_workout;
 
 	const int kFirstHeight = 40;
 	const int kFirstWidth = 180;

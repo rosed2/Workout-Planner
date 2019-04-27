@@ -16,6 +16,10 @@ WorkoutPlan::WorkoutPlan(string name, vector<Exercise> exercises) {
 	exercises_ = exercises;
 }
 
+WorkoutPlan::WorkoutPlan() {
+
+}
+
 WorkoutPlan::~WorkoutPlan() {
 
 }

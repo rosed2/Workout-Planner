@@ -234,3 +234,26 @@ TEST_CASE("Library SearchForExerciseByEquipment 2 Results") {
 	REQUIRE(results[0].GetName() == "Exercise 1");
 	REQUIRE(results[1].GetName() == "Exercise 3");
 }
+
+
+//--------------------Tests for RemoveWorkoutPlan-----------------------
+TEST_CASE("Library Remove Workout Plan") {
+	vector<WorkoutPlan> work{ w1, w2 };
+
+	Library library = Library(&work, &all_exercises);
+
+	library.RemoveWorkoutPlan("Plan 1");
+	REQUIRE(library.GetWorkoutPlans()->size() == 1);
+	REQUIRE((*library.GetWorkoutPlans())[0].GetName() == "Plan 2");
+}
+
+TEST_CASE("Library Remove Workout Plan Doesn't Have It") {
+	vector<WorkoutPlan> work{ w1, w2 };
+
+	Library library = Library(&work, &all_exercises);
+
+	library.RemoveWorkoutPlan("Plan 3");
+	REQUIRE(library.GetWorkoutPlans()->size() == 2);
+	REQUIRE((*library.GetWorkoutPlans())[1].GetName() == "Plan 2");
+	REQUIRE((*library.GetWorkoutPlans())[0].GetName() == "Plan 1");
+}

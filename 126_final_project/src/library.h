@@ -21,6 +21,7 @@ public:
 	std::vector<Exercise> SearchForExercisesByName(std::string);
 	std::vector<Exercise> SearchForExercisesByMuscle(std::string);
 	std::vector<Exercise> SearchForExercisesByEquipment(std::string);
+	void RemoveWorkoutPlan(std::string);
 
 private:
 	std::vector<WorkoutPlan>* workout_plans_;

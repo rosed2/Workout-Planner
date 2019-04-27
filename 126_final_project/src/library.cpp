@@ -116,3 +116,11 @@ vector<Exercise> Library::SearchForExercisesByEquipment(string name) {
 	return to_return;
 }
 
+void Library::RemoveWorkoutPlan(string name) {
+	for (vector<WorkoutPlan>::iterator it = workout_plans_->begin(); it != workout_plans_->end(); ++it) {
+		if (it->GetName() == name) {
+			workout_plans_->erase(it);
+			return;
+		}
+	}
+}
