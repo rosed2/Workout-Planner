@@ -22,34 +22,30 @@ class ofApp : public ofBaseApp{
 		void update();
 		void draw();
 
+		//Methods for searching for an exercise
 		void SearchForExerciseByName(std::string, ofxDatGuiScrollView*);
 		void SearchForExerciseByMuscle(std::string, ofxDatGuiScrollView*);
 		void SearchForExerciseByEquipment(std::string, ofxDatGuiScrollView*);
-
-		
-		
-		void onButtonSeeLibrary(ofxDatGuiButtonEvent e);
 		void onTextSearchExercise(ofxDatGuiTextInputEvent e);
 
-		void onTextCreateWorkout(ofxDatGuiTextInputEvent e);
+		//Methods for searching library for workouts
+		void onButtonSeeLibrary(ofxDatGuiButtonEvent e);		
 		void onTextSeeLibrary(ofxDatGuiTextInputEvent e);
-
-		
 		void onScrollSeeLibrary(ofxDatGuiScrollViewEvent e);
-		
+
 
 		//Methods for creating workout
+		void onTextCreateWorkout(ofxDatGuiTextInputEvent e);
 		void onButtonCreateWorkout(ofxDatGuiButtonEvent e);
-		void CreateWorkout(std::string);
 		void onScrollAddExerciseToWorkout(ofxDatGuiScrollViewEvent e);
 		void onScrollRemoveExerciseFromWorkout(ofxDatGuiScrollViewEvent e);
 		void UpdateScrollEditPlan();
 
-		//void onScrollSeeWorkout(ofxDatGuiScrollViewEvent e);
 private:
 	Library library_;
 	std::vector<Exercise> exercises_;
 	std::vector<WorkoutPlan> workout_plans_;
+	WorkoutPlan current_workout;
 
 	ofxDatGuiLabel* title_;
 	ofxDatGui* guiSeeLibrary;
@@ -63,11 +59,13 @@ private:
 
 	ofxDatGuiScrollView* scroll_select_exercises_;
 	ofxDatGuiScrollView* scroll_edit_plan_;
-	WorkoutPlan current_workout;
 
 	const int kFirstHeight = 40;
 	const int kFirstWidth = 180;
 	const int kHorizontalBreak = 10;
 	const int kVerticalBreak = 10;
 	const int kScrollViewElements = 12;
+	const int kScreenRatio = .9;
+	const int kColumns = 3;
+	const int kScrollLibrary = 5;
 };

@@ -9,7 +9,6 @@
 using std::vector;
 using std::string;
 
-//Got text pop up from https://forum.openframeworks.cc/t/workaround-ofxgui-text-input/19630/3
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -29,7 +28,7 @@ void ofApp::setup(){
 
 	//Title
 	title_ = new ofxDatGuiLabel("Workout Planner");
-	title_->setPosition(ofGetScreenWidth() / 3, 0);
+	title_->setPosition(ofGetScreenWidth() / kColumns, 0);
 	title_->setLabelAlignment(ofxDatGuiAlignment::CENTER);
 	title_->setBackgroundColor(ofColor::blueSteel);
 	title_->setLabelColor(ofColor::floralWhite);
@@ -74,7 +73,7 @@ void ofApp::SetupSeeLibrary() {
 	library_exercise_name_->onTextInputEvent(this, &ofApp::onTextSeeLibrary);
 
 	//Scroll views for library searching
-	scroll_see_library_ = new ofxDatGuiScrollView("Library of Workouts", 5);
+	scroll_see_library_ = new ofxDatGuiScrollView("Library of Workouts", kScrollLibrary);
 	scroll_see_library_->setPosition(kFirstWidth, kFirstHeight + 4 * guiSeeLibrary->getHeight() 
 																				+ kVerticalBreak);
 	scroll_see_library_->onScrollViewEvent(this, &ofApp::onScrollSeeLibrary);
@@ -178,18 +177,6 @@ void ofApp::onScrollRemoveExerciseFromWorkout(ofxDatGuiScrollViewEvent e) {
 	current_workout.RemoveExercise(exercise_name);
 }
 
-
-void ofApp::onTextSearchExercise(ofxDatGuiTextInputEvent e) {
-	if (e.target->is("Exercise Name")) {
-		SearchForExerciseByName(e.text, scroll_search_exercises_);
-	} else if (e.target->is("Muscle Name")) {
-		SearchForExerciseByMuscle(e.text, scroll_search_exercises_);
-	} else if (e.target->is("Equipment Name")) {
-		SearchForExerciseByEquipment(e.text, scroll_search_exercises_);
-	}
-}
-
-
 void ofApp::onTextCreateWorkout(ofxDatGuiTextInputEvent e) {
 	if (e.target->is("Workout Plan Name")) {
 		vector<WorkoutPlan> results = library_.SearchForPlanByName(e.text);
@@ -233,6 +220,8 @@ void ofApp::onButtonCreateWorkout(ofxDatGuiButtonEvent e) {
 		scroll_edit_plan_->clear();
 	} else if (e.target->is("Delete Workout")) {
 		library_.RemoveWorkoutPlan(current_workout.GetName());
+		scroll_select_exercises_->clear();
+		scroll_edit_plan_->clear();
 	}
 }
 
@@ -273,6 +262,16 @@ void ofApp::SearchForExerciseByEquipment(string input, ofxDatGuiScrollView* scro
 		scroll->add(results[i].GetName());
 		scroll->add("		Muscle: " + results[i].GetMuscle());
 		scroll->add("		Equipment: " + results[i].GetEquipment());
+	}
+}
+
+void ofApp::onTextSearchExercise(ofxDatGuiTextInputEvent e) {
+	if (e.target->is("Exercise Name")) {
+		SearchForExerciseByName(e.text, scroll_search_exercises_);
+	} else if (e.target->is("Muscle Name")) {
+		SearchForExerciseByMuscle(e.text, scroll_search_exercises_);
+	} else if (e.target->is("Equipment Name")) {
+		SearchForExerciseByEquipment(e.text, scroll_search_exercises_);
 	}
 }
 
