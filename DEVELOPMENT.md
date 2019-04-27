@@ -40,4 +40,6 @@ pointer variable to the address of the temp vector
 	1. *4-23-19* Created scroll view that shows results of searching exercises
 	1. *4-23-19* Created scroll views that show library and exercises in each workout
 1. *4-23-19* Added feature to search library by workout name and exercise
-1. *4-23-1*9* Added feature to create new workout plan
+1. *4-23-19* Added feature to create new workout plan
+
+ 

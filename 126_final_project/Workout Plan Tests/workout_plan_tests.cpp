@@ -100,3 +100,24 @@ TEST_CASE("Workout Plan Add Exercise") {
 
 
 
+//-----------------------Tests for RemoveExercise------------------
+TEST_CASE("Workout Plan Remove Exercise") {
+	Exercise ex1 = Exercise("a", "arm", "none");
+	Exercise ex2 = Exercise("b", "leg", "dumbbells");
+	vector<Exercise> vec{ ex1, ex2 };
+	WorkoutPlan w1 = WorkoutPlan("name", vec);
+	w1.RemoveExercise("a");
+	REQUIRE(w1.GetExercises().size() == 1);
+	REQUIRE(w1.GetExercises()[0].GetName() == "b");
+}
+
+TEST_CASE("Workout Plan Remove Exercise Doesn't Contain") {
+	Exercise ex1 = Exercise("a", "arm", "none");
+	Exercise ex2 = Exercise("b", "leg", "dumbbells");
+	vector<Exercise> vec{ ex1, ex2 };
+	WorkoutPlan w1 = WorkoutPlan("name", vec);
+	w1.RemoveExercise("c");
+	REQUIRE(w1.GetExercises().size() == 2);
+	REQUIRE(w1.GetExercises()[0].GetName() == "a");
+	REQUIRE(w1.GetExercises()[1].GetName() == "b");
+}

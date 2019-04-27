@@ -61,3 +61,12 @@ std::ostream& operator<<(std::ostream& stream, WorkoutPlan &c) {
 	}
 	return stream;
 }
+
+void WorkoutPlan::RemoveExercise(string name) {
+	for (vector<Exercise>::iterator it = exercises_.begin(); it != exercises_.end(); ++it) {
+		if (it->GetName() == name) {
+			exercises_.erase(it);
+			return;
+		}
+	}
+}

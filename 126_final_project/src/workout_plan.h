@@ -16,6 +16,7 @@ public:
 	void SetExercises(std::vector<Exercise>);
 	bool ContainsExercise(std::string);
 	void AddExercise(Exercise);
+	void RemoveExercise(std::string);
 
 	friend std::ostream& operator<<(std::ostream& stream, WorkoutPlan &c);
 
