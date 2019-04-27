@@ -39,7 +39,7 @@ class ofApp : public ofBaseApp{
 		
 
 		//Methods for creating workout
-		void onButtonDoneCreateWorkout(ofxDatGuiButtonEvent e);
+		void onButtonCreateWorkout(ofxDatGuiButtonEvent e);
 		void CreateWorkout(std::string);
 		void onScrollAddExerciseToWorkout(ofxDatGuiScrollViewEvent e);
 		void onScrollRemoveExerciseFromWorkout(ofxDatGuiScrollViewEvent e);
