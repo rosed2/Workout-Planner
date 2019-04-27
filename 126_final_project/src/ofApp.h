@@ -68,4 +68,14 @@ private:
 	const int kScreenRatio = .9;
 	const int kColumns = 3;
 	const int kScrollLibrary = 5;
+
+	const int kGuiSeeLibraryHeight = 4;
+	const int kGuiSearchForExerciseHeight = 4;
+	const int kGuiCreateWorkoutHeight = 7;
+
+	int first_column_x_;
+	int second_column_x_;
+	int third_column_x_;
+
+	ofColor background_color_ = ofColor::lightGray;
 };

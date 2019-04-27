@@ -36,106 +36,125 @@ void ofApp::setup(){
 
 	SetupGui();
 
+	SetupCreateWorkout();
+
 	SetupSeeLibrary();
 
 	SetupSearchForExercise();
 
-	SetupCreateWorkout();
-
 }
 
 void ofApp::SetupGui() {
+
+	first_column_x_ = kFirstWidth;
+
 	//Create 3 gui's, one column for each function
+	guiCreateWorkout = new ofxDatGui();
+	guiCreateWorkout->setTheme(new ofxDatGuiThemeAqua);
+	guiCreateWorkout->setPosition(first_column_x_, kFirstHeight);
+
+	second_column_x_ = first_column_x_ + guiCreateWorkout->getWidth() + kHorizontalBreak;
+
 	guiSeeLibrary = new ofxDatGui();
-	guiSeeLibrary->setPosition(kFirstWidth, kFirstHeight);
+	guiSeeLibrary->setPosition(second_column_x_, kFirstHeight);
 	guiSeeLibrary->setTheme(new ofxDatGuiThemeAqua);
+
+	third_column_x_ = second_column_x_ + guiSeeLibrary->getWidth() + kHorizontalBreak;
 
 	guiSearchForExercise = new ofxDatGui();
 	guiSearchForExercise->setTheme(new ofxDatGuiThemeAqua);
-	guiSearchForExercise->setPosition(kFirstWidth + guiSeeLibrary->getWidth() + kHorizontalBreak,
-											kFirstHeight);
+	guiSearchForExercise->setPosition(third_column_x_, kFirstHeight);
 
-	guiCreateWorkout = new ofxDatGui();
-	guiCreateWorkout->setTheme(new ofxDatGuiThemeAqua);
-	guiCreateWorkout->setPosition(kFirstWidth + guiSeeLibrary->getWidth() +
-		guiSearchForExercise->getWidth() + 2 * kHorizontalBreak, kFirstHeight);
+	
+
 }
 
 void ofApp::SetupSeeLibrary() {
+	
 	//Set up see library folder, button, text inputs
 	ofxDatGuiFolder* see_library_folder_ =
-		guiSeeLibrary->addFolder("Search Library for Workout Plans", ofColor::white);
+									guiSeeLibrary->addFolder("Search Library for Workout Plans");
+
 	ofxDatGuiButton* see_whole_library_ = see_library_folder_->addButton("See All Workout Plans");
 	guiSeeLibrary->onButtonEvent(this, &ofApp::onButtonSeeLibrary);
-	ofxDatGuiTextInput* library_workout_name_ = see_library_folder_->addTextInput("Workout Name", "");
-	ofxDatGuiTextInput* library_exercise_name_ = see_library_folder_->addTextInput("Exercise Name", "");
-	library_workout_name_->onTextInputEvent(this, &ofApp::onTextSeeLibrary);
-	library_exercise_name_->onTextInputEvent(this, &ofApp::onTextSeeLibrary);
+
+	ofxDatGuiTextInput* library_workout_name_ = see_library_folder_->
+																addTextInput("Workout Name", "");
+	ofxDatGuiTextInput* library_exercise_name_ = see_library_folder_->
+																addTextInput("Exercise Name", "");
+	guiSeeLibrary->onTextInputEvent(this, &ofApp::onTextSeeLibrary);
 
 	//Scroll views for library searching
 	scroll_see_library_ = new ofxDatGuiScrollView("Library of Workouts", kScrollLibrary);
-	scroll_see_library_->setPosition(kFirstWidth, kFirstHeight + 4 * guiSeeLibrary->getHeight() 
-																				+ kVerticalBreak);
+	scroll_see_library_->setPosition(second_column_x_, kFirstHeight 
+							+ kGuiSeeLibraryHeight * guiSeeLibrary->getHeight() + kVerticalBreak);
 	scroll_see_library_->onScrollViewEvent(this, &ofApp::onScrollSeeLibrary);
-	scroll_see_library_->setBackgroundColor(ofColor::lightGray);
+	scroll_see_library_->setBackgroundColor(background_color_);
 
 	scroll_see_workout_ = new ofxDatGuiScrollView("Workouts", kScrollViewElements);
-	scroll_see_workout_->setPosition(kFirstWidth, kFirstHeight + 4 * guiSeeLibrary->getHeight()
-		+ scroll_see_library_->getHeight() + 2 * kVerticalBreak);
-	scroll_see_workout_->setBackgroundColor(ofColor::lightGray);
+	scroll_see_workout_->setPosition(second_column_x_, kFirstHeight 
+							+ kGuiSeeLibraryHeight * guiSeeLibrary->getHeight()	
+							+ scroll_see_library_->getHeight() + 2 * kVerticalBreak);
+	scroll_see_workout_->setBackgroundColor(background_color_);
 }
 
 void ofApp::SetupSearchForExercise() {
+	
 	//Set up search for exercise function
-	ofxDatGuiFolder* folder_search_ = guiSearchForExercise->addFolder("Search Library for Exercises",
-		ofColor::white);
+	ofxDatGuiFolder* folder_search_ = guiSearchForExercise->
+														addFolder("Search Library for Exercises");
 	ofxDatGuiTextInput* exercise_name_ = folder_search_->addTextInput("Exercise Name", "");
 	ofxDatGuiTextInput* muscle_name_ = folder_search_->addTextInput("Muscle Name", "");
 	ofxDatGuiTextInput* equipment_name_ = folder_search_->addTextInput("Equipment Name", "");
-	exercise_name_->onTextInputEvent(this, &ofApp::onTextSearchExercise);
-	muscle_name_->onTextInputEvent(this, &ofApp::onTextSearchExercise);
-	equipment_name_->onTextInputEvent(this, &ofApp::onTextSearchExercise);
+	guiSearchForExercise->onTextInputEvent(this, &ofApp::onTextSearchExercise);
 
 	//Scroll view for search for exercises
 	scroll_search_exercises_ = new ofxDatGuiScrollView("Exercises", kScrollViewElements);
-	scroll_search_exercises_->setPosition(kFirstWidth + guiSeeLibrary->getWidth() + kHorizontalBreak,
-		kFirstHeight + 4 * guiSearchForExercise->getHeight() + kVerticalBreak);
-	scroll_search_exercises_->setBackgroundColor(ofColor::lightGray);
+	scroll_search_exercises_->setPosition(third_column_x_, kFirstHeight 
+				+ kGuiSearchForExerciseHeight * guiSearchForExercise->getHeight() + kVerticalBreak);
+	scroll_search_exercises_->setBackgroundColor(background_color_);
 }
 
 void ofApp::SetupCreateWorkout() {
+	
+
 	//Set up create workout function
-	ofxDatGuiFolder* folder_create_workout_ = guiCreateWorkout->addFolder("Create/Edit Workout Plan",
-		ofColor::red);
-	ofxDatGuiTextInput* workout_name_ = folder_create_workout_->addTextInput("Workout Plan Name", "");
-	workout_name_->onTextInputEvent(this, &ofApp::onTextCreateWorkout);
+	ofxDatGuiFolder* folder_create_workout_ = guiCreateWorkout->
+														addFolder("Create/Edit Workout Plan");
+	ofxDatGuiTextInput* workout_name_ = folder_create_workout_->
+															addTextInput("Workout Plan Name", "");
 
+	//Buttons
 	ofxDatGuiButton* delete_workout_ = folder_create_workout_->addButton("Delete Workout");
-	ofxDatGuiButton* done_create_workout_ = folder_create_workout_->addButton("Done Creating/Editing Workout");
-	guiCreateWorkout->onButtonEvent(this, &ofApp::onButtonCreateWorkout);
+	ofxDatGuiButton* done_create_workout_ = folder_create_workout_->
+													addButton("Done Creating/Editing Workout");
 
-	ofxDatGuiTextInput* create_exercise_name_ = folder_create_workout_->addTextInput("Exercise Name", "");
-	ofxDatGuiTextInput* create_muscle_name_ = folder_create_workout_->addTextInput("Muscle Name", "");
-	ofxDatGuiTextInput* create_equipment_name_ = folder_create_workout_->addTextInput("Equipment Name", "");
-	create_exercise_name_->onTextInputEvent(this, &ofApp::onTextCreateWorkout);
-	create_muscle_name_->onTextInputEvent(this, &ofApp::onTextCreateWorkout);
-	create_equipment_name_->onTextInputEvent(this, &ofApp::onTextCreateWorkout);
+	//Text input
+	ofxDatGuiTextInput* create_exercise_name_ = folder_create_workout_->
+															addTextInput("Exercise Name", "");
+	ofxDatGuiTextInput* create_muscle_name_ = folder_create_workout_->
+															addTextInput("Muscle Name", "");
+	ofxDatGuiTextInput* create_equipment_name_ = folder_create_workout_->
+															addTextInput("Equipment Name", "");
+
+	//Set events
+	guiCreateWorkout->onButtonEvent(this, &ofApp::onButtonCreateWorkout);
+	guiCreateWorkout->onTextInputEvent(this, &ofApp::onTextCreateWorkout);
 
 	//Scroll view for selecting exercises
 	scroll_select_exercises_ = new ofxDatGuiScrollView("Exercises", kScrollViewElements);
-	scroll_select_exercises_->setPosition(kFirstWidth + guiSeeLibrary->getWidth() +
-		guiSearchForExercise->getWidth() + 2 * kHorizontalBreak,
-		kFirstHeight + 7 * guiSearchForExercise->getHeight() + kVerticalBreak);
+	scroll_select_exercises_->setPosition(first_column_x_, kFirstHeight 
+						+ kGuiCreateWorkoutHeight * guiCreateWorkout->getHeight() + kVerticalBreak);
 	scroll_select_exercises_->onScrollViewEvent(this, &ofApp::onScrollAddExerciseToWorkout);
-	scroll_select_exercises_->setBackgroundColor(ofColor::lightGray);
+	scroll_select_exercises_->setBackgroundColor(background_color_);
 
 	//Scroll view for editing workout
 	scroll_edit_plan_ = new ofxDatGuiScrollView("Exercises of Workout", kScrollViewElements);
-	scroll_edit_plan_->setPosition(kFirstWidth + guiSeeLibrary->getWidth() +
-		guiSearchForExercise->getWidth() + 2 * kHorizontalBreak,
-		kFirstHeight + 19 * guiSearchForExercise->getHeight() + kVerticalBreak);
+	scroll_edit_plan_->setPosition(first_column_x_, kFirstHeight 
+				+ (kGuiCreateWorkoutHeight + kScrollViewElements) * guiCreateWorkout->getHeight() 
+				+ kVerticalBreak);
 	scroll_edit_plan_->onScrollViewEvent(this, &ofApp::onScrollRemoveExerciseFromWorkout);
-	scroll_edit_plan_->setBackgroundColor(ofColor::lightGray);
+	scroll_edit_plan_->setBackgroundColor(background_color_);
 }
 
 //--------------------------------------------------------------
@@ -203,7 +222,8 @@ void ofApp::UpdateScrollEditPlan() {
 	for (int i = 0; i < current_workout.GetExercises().size(); i++) {
 		scroll_edit_plan_->add(current_workout.GetExercises()[i].GetName());
 		scroll_edit_plan_->add("		Muscle: " + current_workout.GetExercises()[i].GetMuscle());
-		scroll_edit_plan_->add("		Equipment: " + current_workout.GetExercises()[i].GetEquipment());
+		scroll_edit_plan_->add("		Equipment: " 
+											+ current_workout.GetExercises()[i].GetEquipment());
 	}
 }
 
