@@ -43,6 +43,7 @@ class ofApp : public ofBaseApp{
 		void CreateWorkout(std::string);
 		void onScrollAddExerciseToWorkout(ofxDatGuiScrollViewEvent e);
 		void onScrollRemoveExerciseFromWorkout(ofxDatGuiScrollViewEvent e);
+		void UpdateScrollEditPlan();
 
 		//void onScrollSeeWorkout(ofxDatGuiScrollViewEvent e);
 private:
@@ -62,9 +63,6 @@ private:
 
 	ofxDatGuiScrollView* scroll_select_exercises_;
 	ofxDatGuiScrollView* scroll_edit_plan_;
-
-	vector<Exercise> new_workout_exercises;
-	std::string new_workout_name;
 	WorkoutPlan current_workout;
 
 	const int kFirstHeight = 40;
