@@ -48,3 +48,5 @@ pointer variable to the address of the temp vector
 1. *4-26-19* Added feature to add exercises to existing workout plan
 1. *4-26-19* Added feature to delete workout plan from the library
 1. *4-27-19* Get rid of more magic numbers
+1. *4-27-19* Decided to add feature to plan the user's week
+1. *4-28-19* Create Day class and test cases

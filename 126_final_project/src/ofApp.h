@@ -61,12 +61,11 @@ private:
 	ofxDatGuiScrollView* scroll_edit_plan_;
 
 	const int kFirstHeight = 40;
-	const int kFirstWidth = 180;
+	const int kFirstWidth = 275;
+	//const int kFirstWidth = 0;
 	const int kHorizontalBreak = 10;
 	const int kVerticalBreak = 10;
 	const int kScrollViewElements = 12;
-	const int kScreenRatio = .9;
-	const int kColumns = 3;
 	const int kScrollLibrary = 5;
 
 	const int kGuiSeeLibraryHeight = 4;

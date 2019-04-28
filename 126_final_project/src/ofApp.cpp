@@ -20,15 +20,15 @@ void ofApp::setup(){
 
 	//Set window size and position
 	ofSetWindowPosition(0, 0);
-	int width = ofGetScreenWidth() * .9;
-	int height = ofGetScreenHeight() * .9;
+	int width = ofGetScreenWidth();
+	int height = ofGetScreenHeight();
 	
 	ofSetWindowShape(width, height);
 	ofSetWindowPosition((ofGetScreenWidth() / 2) - (width / 2), 0);
 
 	//Title
 	title_ = new ofxDatGuiLabel("Workout Planner");
-	title_->setPosition(ofGetScreenWidth() / kColumns, 0);
+	title_->setPosition(ofGetScreenWidth() / 2 - title_->getWidth() / 2, 0);
 	title_->setLabelAlignment(ofxDatGuiAlignment::CENTER);
 	title_->setBackgroundColor(ofColor::blueSteel);
 	title_->setLabelColor(ofColor::floralWhite);
@@ -52,6 +52,7 @@ void ofApp::SetupGui() {
 	guiCreateWorkout = new ofxDatGui();
 	guiCreateWorkout->setTheme(new ofxDatGuiThemeAqua);
 	guiCreateWorkout->setPosition(first_column_x_, kFirstHeight);
+	//guiCreateWorkout->setWidth(300);
 
 	second_column_x_ = first_column_x_ + guiCreateWorkout->getWidth() + kHorizontalBreak;
 
