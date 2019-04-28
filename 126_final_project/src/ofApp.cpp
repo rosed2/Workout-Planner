@@ -18,22 +18,12 @@ void ofApp::setup(){
 	exercises_ = parser.ReadExercises();
 	library_ = Library(&workout_plans_, &exercises_);
 
-	//Set window size and position
+	//Set window size and position	
+	ofSetWindowShape(ofGetScreenWidth(), ofGetScreenHeight());
 	ofSetWindowPosition(0, 0);
-	int width = ofGetScreenWidth();
-	int height = ofGetScreenHeight();
+
+	SetupTitle();
 	
-	ofSetWindowShape(width, height);
-	ofSetWindowPosition((ofGetScreenWidth() / 2) - (width / 2), 0);
-
-	//Title
-	title_ = new ofxDatGuiLabel("Workout Planner");
-	title_->setPosition(ofGetScreenWidth() / 2 - title_->getWidth() / 2, 0);
-	title_->setLabelAlignment(ofxDatGuiAlignment::CENTER);
-	title_->setBackgroundColor(ofColor::blueSteel);
-	title_->setLabelColor(ofColor::floralWhite);
-	title_->setStripeVisible(false);
-
 	SetupGui();
 
 	SetupCreateWorkout();
@@ -43,15 +33,25 @@ void ofApp::setup(){
 	SetupSearchForExercise();
 
 	SetupDays();
+
+	SetupClearScrollsButton();
 }
 
+void ofApp::SetupTitle() {
+	title_ = new ofxDatGuiLabel("Workout Planner");
+	title_->setPosition(ofGetScreenWidth() / 2 - title_->getWidth() / 2, 0);
+	title_->setLabelAlignment(ofxDatGuiAlignment::CENTER);
+	title_->setBackgroundColor(ofColor::blueSteel);
+	title_->setLabelColor(ofColor::floralWhite);
+	title_->setStripeVisible(false);
+}
 void ofApp::SetupGui() {
 
 	first_column_x_ = kFirstWidth;
 
 	//Create 3 gui's, one column for each function
 	guiCreateWorkout = new ofxDatGui();
-	guiCreateWorkout->setTheme(new ofxDatGuiThemeAqua);
+	guiCreateWorkout->setTheme(theme_);
 	guiCreateWorkout->setPosition(first_column_x_, kFirstHeight);
 	//guiCreateWorkout->setWidth(300);
 
@@ -59,18 +59,18 @@ void ofApp::SetupGui() {
 
 	guiSeeLibrary = new ofxDatGui();
 	guiSeeLibrary->setPosition(second_column_x_, kFirstHeight);
-	guiSeeLibrary->setTheme(new ofxDatGuiThemeAqua);
+	guiSeeLibrary->setTheme(theme_);
 
 	third_column_x_ = second_column_x_ + guiSeeLibrary->getWidth() + kHorizontalBreak;
 
 	guiSearchForExercise = new ofxDatGui();
-	guiSearchForExercise->setTheme(new ofxDatGuiThemeAqua);
+	guiSearchForExercise->setTheme(theme_);
 	guiSearchForExercise->setPosition(third_column_x_, kFirstHeight);
 
 	fourth_column_x_ = third_column_x_ + guiSearchForExercise->getWidth() + kHorizontalBreak;
 
 	guiDays = new ofxDatGui();
-	guiDays->setTheme(new ofxDatGuiThemeAqua);
+	guiDays->setTheme(theme_);
 	guiDays->setPosition(fourth_column_x_, kFirstHeight);
 
 }
@@ -207,6 +207,16 @@ void ofApp::SetupDays() {
 	
 }
 
+void ofApp::SetupClearScrollsButton() {
+	button_clear_all_scrolls_ = new ofxDatGuiButton("Clear Scrolls");
+	button_clear_all_scrolls_->onButtonEvent(this, &ofApp::onButtonClearAllScrolls);
+	button_clear_all_scrolls_->setTheme(theme_);
+	button_clear_all_scrolls_->setPosition(ofGetScreenWidth() / 2 -
+		button_clear_all_scrolls_->getWidth() / 2,
+		ofGetScreenHeight() - button_clear_all_scrolls_->getHeight()
+		- kVerticalBreak);
+}
+
 //--------------------------------------------------------------
 void ofApp::update(){
 	scroll_search_exercises_->update();
@@ -217,6 +227,7 @@ void ofApp::update(){
 	scroll_day_see_day_->update();
 	scroll_day_select_workout_->update();
 	scroll_day_add_workout_->update();
+	button_clear_all_scrolls_->update();
 }
 
 //--------------------------------------------------------------
@@ -233,7 +244,26 @@ void ofApp::draw(){
 	scroll_day_see_day_->draw();
 	scroll_day_select_workout_->draw();
 	scroll_day_add_workout_->draw();
+	button_clear_all_scrolls_->draw();
 }
+
+
+void ofApp::onButtonClearAllScrolls(ofxDatGuiButtonEvent e) {
+	if (e.target->is("Clear Scrolls")) {
+		scroll_search_exercises_->clear();
+
+		scroll_see_library_->clear();
+		scroll_see_workout_->clear();
+
+		scroll_select_exercises_->clear();
+		scroll_edit_plan_->clear();
+
+		scroll_day_select_workout_->clear();
+		scroll_day_add_workout_->clear();
+		scroll_day_see_day_->clear();
+	}
+}
+
 
 
 

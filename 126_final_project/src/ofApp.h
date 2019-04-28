@@ -15,14 +15,18 @@ class ofApp : public ofBaseApp{
 		void setup();
 
 		//Setup helper methods
+		void SetupTitle();
 		void SetupGui();
 		void SetupSeeLibrary();
 		void SetupSearchForExercise();
 		void SetupCreateWorkout();
 		void SetupDays();
+		void SetupClearScrollsButton();
 
 		void update();
 		void draw();
+
+		void onButtonClearAllScrolls(ofxDatGuiButtonEvent e);
 
 		//Methods for searching for an exercise
 		void SearchForExerciseByName(std::string, ofxDatGuiScrollView*);
@@ -53,6 +57,8 @@ class ofApp : public ofBaseApp{
 		void UpdateScrollDaySeeDay();
 
 
+
+
 private:
 	Library library_;
 	std::vector<Exercise> exercises_;
@@ -81,8 +87,9 @@ private:
 	ofxDatGuiScrollView* scroll_day_add_workout_;
 	ofxDatGuiScrollView* scroll_day_see_day_;
 
+	ofxDatGuiButton* button_clear_all_scrolls_;
+
 	const int kFirstHeight = 40;
-	//const int kFirstWidth = 275;
 	const int kFirstWidth = 45;
 	const int kHorizontalBreak = 10;
 	const int kVerticalBreak = 10;
@@ -94,10 +101,12 @@ private:
 	const int kGuiSearchForExerciseHeight = 4;
 	const int kGuiCreateWorkoutHeight = 7;
 
+	ofxDatGuiTheme* theme_ = new ofxDatGuiThemeAqua;
+
 	int first_column_x_;
 	int second_column_x_;
 	int third_column_x_;
 	int fourth_column_x_;
 
-	ofColor background_color_ = ofColor::red;
+	ofColor background_color_ = ofColor::lightGray;
 };
