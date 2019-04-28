@@ -51,3 +51,4 @@ pointer variable to the address of the temp vector
 1. *4-27-19* Decided to add feature to plan the user's week
 1. *4-28-19* Create Day class and test cases
 1. *4-28-19* Add feature to add workout plan to day and remove plan from a day
+1. *4-28-19* Add scroll views to Weekly Planner feature

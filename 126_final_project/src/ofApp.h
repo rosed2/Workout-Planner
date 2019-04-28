@@ -48,6 +48,7 @@ class ofApp : public ofBaseApp{
 		void onButtonDaySeeLibrary(ofxDatGuiButtonEvent e);
 		void onTextDaySelectWorkout(ofxDatGuiTextInputEvent e);
 		void onScrollDaySelectWorkout(ofxDatGuiScrollViewEvent e);
+		void onScrollDayAddWorkout(ofxDatGuiScrollViewEvent e);
 		void onScrollDayRemoveWorkout(ofxDatGuiScrollViewEvent e);
 		void UpdateScrollDaySeeDay();
 
@@ -56,7 +57,8 @@ private:
 	Library library_;
 	std::vector<Exercise> exercises_;
 	std::vector<WorkoutPlan> workout_plans_;
-	WorkoutPlan current_workout;
+	WorkoutPlan current_workout_;
+	WorkoutPlan selected_workout_;
 
 	std::vector<Day> days_;
 	Day* current_day_;
@@ -76,6 +78,7 @@ private:
 	ofxDatGuiScrollView* scroll_edit_plan_;
 
 	ofxDatGuiScrollView* scroll_day_select_workout_;
+	ofxDatGuiScrollView* scroll_day_add_workout_;
 	ofxDatGuiScrollView* scroll_day_see_day_;
 
 	const int kFirstHeight = 40;
@@ -84,6 +87,7 @@ private:
 	const int kHorizontalBreak = 10;
 	const int kVerticalBreak = 10;
 	const int kScrollViewElements = 12;
+	const int kSearchExerciseScrollHeight = 18;
 	const int kScrollLibrary = 5;
 
 	const int kGuiSeeLibraryHeight = 4;
@@ -95,5 +99,5 @@ private:
 	int third_column_x_;
 	int fourth_column_x_;
 
-	ofColor background_color_ = ofColor::lightGray;
+	ofColor background_color_ = ofColor::red;
 };

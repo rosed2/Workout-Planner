@@ -45,7 +45,6 @@ void ofApp::setup(){
 	SetupDays();
 }
 
-
 void ofApp::SetupGui() {
 
 	first_column_x_ = kFirstWidth;
@@ -116,7 +115,7 @@ void ofApp::SetupSearchForExercise() {
 	guiSearchForExercise->onTextInputEvent(this, &ofApp::onTextSearchExercise);
 
 	//Scroll view for search for exercises
-	scroll_search_exercises_ = new ofxDatGuiScrollView("Exercises", kScrollViewElements);
+	scroll_search_exercises_ = new ofxDatGuiScrollView("Exercises", kSearchExerciseScrollHeight);
 	scroll_search_exercises_->setPosition(third_column_x_, kFirstHeight 
 				+ kGuiSearchForExerciseHeight * guiSearchForExercise->getHeight() + kVerticalBreak);
 	scroll_search_exercises_->setBackgroundColor(background_color_);
@@ -191,10 +190,17 @@ void ofApp::SetupDays() {
 	scroll_day_select_workout_->onScrollViewEvent(this, &ofApp::onScrollDaySelectWorkout);
 	scroll_day_select_workout_->setBackgroundColor(background_color_);
 
+	scroll_day_add_workout_ = new ofxDatGuiScrollView("Workouts", kScrollViewElements);
+	scroll_day_add_workout_->setPosition(fourth_column_x_, kFirstHeight
+		+ guiDays->getHeight() + scroll_day_select_workout_->getHeight() + 2 * kVerticalBreak);
+	scroll_day_add_workout_->onScrollViewEvent(this, &ofApp::onScrollDayAddWorkout);
+	scroll_day_add_workout_->setBackgroundColor(background_color_);
+
+
 	scroll_day_see_day_ = new ofxDatGuiScrollView("Day Workouts", kScrollViewElements);
 	scroll_day_see_day_->setPosition(fourth_column_x_, kFirstHeight
-		+ guiDays->getHeight()
-		+ scroll_day_select_workout_->getHeight() + 2 * kVerticalBreak);
+		+ guiDays->getHeight() + scroll_day_select_workout_->getHeight() 
+		+ scroll_day_add_workout_->getHeight() + 3 * kVerticalBreak);
 	scroll_day_see_day_->onScrollViewEvent(this, &ofApp::onScrollDayRemoveWorkout);
 	scroll_day_see_day_->setBackgroundColor(background_color_);
 
@@ -210,6 +216,7 @@ void ofApp::update(){
 	scroll_edit_plan_->update();
 	scroll_day_see_day_->update();
 	scroll_day_select_workout_->update();
+	scroll_day_add_workout_->update();
 }
 
 //--------------------------------------------------------------
@@ -225,6 +232,7 @@ void ofApp::draw(){
 	scroll_edit_plan_->draw();
 	scroll_day_see_day_->draw();
 	scroll_day_select_workout_->draw();
+	scroll_day_add_workout_->draw();
 }
 
 
@@ -236,13 +244,13 @@ void ofApp::onScrollAddExerciseToWorkout(ofxDatGuiScrollViewEvent e) {
 	std::string exercise_name = e.target->getLabel();
 	vector<Exercise> exercises = library_.SearchForExercisesByName(exercise_name);
 	Exercise* exercise = &exercises[0];
-	current_workout.AddExercise(*exercise);
+	current_workout_.AddExercise(*exercise);
 	UpdateScrollEditPlan();
 }
 
 void ofApp::onScrollRemoveExerciseFromWorkout(ofxDatGuiScrollViewEvent e) {
 	std::string exercise_name = e.target->getLabel();
-	current_workout.RemoveExercise(exercise_name);
+	current_workout_.RemoveExercise(exercise_name);
 }
 
 void ofApp::onTextCreateWorkout(ofxDatGuiTextInputEvent e) {
@@ -250,9 +258,9 @@ void ofApp::onTextCreateWorkout(ofxDatGuiTextInputEvent e) {
 		vector<WorkoutPlan> results = library_.SearchForPlanByName(e.text);
 		if (results.size() == 0) {
 			vector<Exercise> empty_exercises{};
-			current_workout = WorkoutPlan(e.text, empty_exercises);
+			current_workout_ = WorkoutPlan(e.text, empty_exercises);
 		} else {
-			current_workout = results[0];
+			current_workout_ = results[0];
 			scroll_edit_plan_->clear();
 			UpdateScrollEditPlan();
 		}
@@ -269,27 +277,27 @@ void ofApp::UpdateScrollEditPlan() {
 	scroll_edit_plan_->clear();
 	scroll_edit_plan_->add("Exercises in this Workout");
 	scroll_edit_plan_->add("Click Exercise to Remove");
-	for (int i = 0; i < current_workout.GetExercises().size(); i++) {
-		scroll_edit_plan_->add(current_workout.GetExercises()[i].GetName());
-		scroll_edit_plan_->add("		Muscle: " + current_workout.GetExercises()[i].GetMuscle());
+	for (int i = 0; i < current_workout_.GetExercises().size(); i++) {
+		scroll_edit_plan_->add(current_workout_.GetExercises()[i].GetName());
+		scroll_edit_plan_->add("		Muscle: " + current_workout_.GetExercises()[i].GetMuscle());
 		scroll_edit_plan_->add("		Equipment: " 
-											+ current_workout.GetExercises()[i].GetEquipment());
+											+ current_workout_.GetExercises()[i].GetEquipment());
 	}
 }
 
 void ofApp::onButtonCreateWorkout(ofxDatGuiButtonEvent e) {
 	if (e.target->is("Done Creating/Editing Workout")) {
-		vector<WorkoutPlan> results = library_.SearchForPlanByName(current_workout.GetName());
+		vector<WorkoutPlan> results = library_.SearchForPlanByName(current_workout_.GetName());
 		if (results.size() == 0) {
-			library_.AddWorkoutPlan(current_workout);
+			library_.AddWorkoutPlan(current_workout_);
 		} else {
-			library_.RemoveWorkoutPlan(current_workout.GetName());
-			library_.AddWorkoutPlan(current_workout);
+			library_.RemoveWorkoutPlan(current_workout_.GetName());
+			library_.AddWorkoutPlan(current_workout_);
 		}
 		scroll_select_exercises_->clear();
 		scroll_edit_plan_->clear();
 	} else if (e.target->is("Delete Workout")) {
-		library_.RemoveWorkoutPlan(current_workout.GetName());
+		library_.RemoveWorkoutPlan(current_workout_.GetName());
 		scroll_select_exercises_->clear();
 		scroll_edit_plan_->clear();
 	}
@@ -399,6 +407,9 @@ void ofApp::onScrollSeeLibrary(ofxDatGuiScrollViewEvent e) {
 
 //Methods for Weekly Planner
 void ofApp::onDropdownDay(ofxDatGuiDropdownEvent e) {
+	scroll_day_add_workout_->clear();
+	scroll_day_see_day_->clear();
+	scroll_day_select_workout_->clear();
 	string name = e.target->getLabel();
 	for (int i = 0; i < days_.size(); i++) {
 		if (days_[i].GetName() == name) {
@@ -437,10 +448,29 @@ void ofApp::onTextDaySelectWorkout(ofxDatGuiTextInputEvent e) {
 }
 
 void ofApp::onScrollDaySelectWorkout(ofxDatGuiScrollViewEvent e) {
+	scroll_day_add_workout_->clear();
+
+	scroll_day_add_workout_->add("Click this to Add");
+	scroll_day_add_workout_->add("Exercises in this Workout");
+
+	vector<WorkoutPlan> workout = library_.SearchForPlanByName(e.target->getLabel());
+	WorkoutPlan current_workout = workout[0];
+	selected_workout_ = workout[0];
+
+	for (int i = 0; i < current_workout.GetExercises().size(); i++) {
+		scroll_day_add_workout_->add(current_workout.GetExercises()[i].GetName());
+		scroll_day_add_workout_->add("		Muscle: " + current_workout.GetExercises()[i].GetMuscle());
+		scroll_day_add_workout_->add("		Equipment: "
+			+ current_workout.GetExercises()[i].GetEquipment());
+	}
+}
+
+void ofApp::onScrollDayAddWorkout(ofxDatGuiScrollViewEvent e) {
 	std::string workout_name = e.target->getLabel();
-	vector<WorkoutPlan> exercises = library_.SearchForPlanByName(workout_name);
-	current_day_->AddWorkoutPlan(exercises[0]);
-	UpdateScrollDaySeeDay();
+	if (workout_name == "Click this to Add") {
+		current_day_->AddWorkoutPlan(selected_workout_);
+		UpdateScrollDaySeeDay();
+	}
 }
 
 void ofApp::onScrollDayRemoveWorkout(ofxDatGuiScrollViewEvent e) {
