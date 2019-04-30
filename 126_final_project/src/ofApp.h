@@ -75,10 +75,10 @@ private:
 	Day* current_day_;
 
 	ofxDatGuiLabel* title_;
-	ofxDatGui* guiSeeLibrary;
-	ofxDatGui* guiSearchForExercise;
-	ofxDatGui* guiCreateWorkout;
-	ofxDatGui* guiDays;
+	ofxDatGui* guiSeeLibrary_;
+	ofxDatGui* guiSearchForExercise_;
+	ofxDatGui* guiCreateWorkout_;
+	ofxDatGui* guiDays_;
 
 	ofxDatGuiScrollView* scroll_search_exercises_;
 
