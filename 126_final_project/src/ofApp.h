@@ -26,6 +26,11 @@ class ofApp : public ofBaseApp{
 		void update();
 		void draw();
 
+		//Convenience methods to populate scroll views
+		void PopulateScrollExercises(std::vector<Exercise>, ofxDatGuiScrollView*);
+		void PopulateScrollWorkouts(std::vector<WorkoutPlan>, ofxDatGuiScrollView*);
+		
+		//Method to clear all scrolls
 		void onButtonClearAllScrolls(ofxDatGuiButtonEvent e);
 
 		//Methods for searching for an exercise
@@ -101,12 +106,11 @@ private:
 	const int kGuiSearchForExerciseHeight = 4;
 	const int kGuiCreateWorkoutHeight = 7;
 
-	ofxDatGuiTheme* theme_ = new ofxDatGuiThemeAqua;
-
 	int first_column_x_;
 	int second_column_x_;
 	int third_column_x_;
 	int fourth_column_x_;
 
+	ofxDatGuiTheme* theme_ = new ofxDatGuiThemeAqua;
 	ofColor background_color_ = ofColor::lightGray;
 };
