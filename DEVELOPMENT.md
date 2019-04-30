@@ -54,3 +54,9 @@ pointer variable to the address of the temp vector
 1. *4-28-19* Add scroll views to Weekly Planner feature
 1. *4-28-19* Add button to clear all scrolls
 1. *4-29-19* Added convience methods, clean up code
+
+## Goals for the Future
+- Utilize an API that contains information about more exercises to increase the number of exercises
+that the user can plan to do
+- Add accounts so that the user can log in and log out and save their data
+- Add feature to print/read user data to/from a file
