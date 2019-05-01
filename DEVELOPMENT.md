@@ -54,6 +54,9 @@ pointer variable to the address of the temp vector
 1. *4-28-19* Add scroll views to Weekly Planner feature
 1. *4-28-19* Add button to clear all scrolls
 1. *4-29-19* Added convience methods, clean up code
+1. *4-30-19* Tried to add system where user creates own account and logs in, created User class,
+ran into error "scalar deleting deconstructor", decided to revert code back to state before 
+implementing User class
 
 ## Goals for the Future
 - Utilize an API that contains information about more exercises to increase the number of exercises

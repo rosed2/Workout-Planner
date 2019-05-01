@@ -2,14 +2,13 @@
 
 **Workout Planner**
 
-This project will allow the user to create and track their own workout routines.
+This project will allow the user to create and plan their own workout routines.
 They will be able to create workout plans by searching for exercises based on
-different criteria (such as muscle group). These workout plans can then be saved
-into the user's library of plans. The user will also have a calendar for the week
+different criteria (such as muscle group, equipment needed, name). These workout plans can then 
+be saved into the user's library of plans. The user can then search for workout plans by 
+name or what exercises it contains. The user will also have a calendar for the week
 so they can plan in advance what workout plan they want to do on each day.
-This planner will also keep track of their previous completions of the exercises 
-to keep track of the number of reps, weights they used, or time needed to complete 
-the exercise as applicable.
+
 
 
 
