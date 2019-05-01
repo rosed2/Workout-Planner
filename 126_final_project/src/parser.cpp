@@ -1,3 +1,4 @@
+//Created 4-17-19 by Rose Dinh
 
 #include "parser.h"
 #include <string>
@@ -17,6 +18,7 @@ Parser::~Parser() {
 
 }
 
+//Method to create an array of Exercise objects from a json file
 vector<Exercise> Parser::ReadExercises() {
 	std::string file = "exercises.json";
 	vector<Exercise> to_return;

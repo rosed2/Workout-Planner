@@ -1,3 +1,6 @@
+//Represents a day object
+//Created 4-28-19 by Rose Dinh
+
 #pragma once
 #include <vector>
 #include <string>

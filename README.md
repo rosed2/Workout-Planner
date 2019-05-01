@@ -7,14 +7,17 @@ to complete.
 ## Getting Started
 
 ### Prerequisites
-Download openFrameworks addons ofxJSON and ofxDatGui
+Install openFrameworks and download openFrameworks addons 
+[ofxDatGui](https://github.com/braitsch/ofxDatGui) and 
+[ofxJSON](https://github.com/jeffcrouse/ofxJSON).
 
 ### Installing
-1. Clone the project onto your desktop.
-1. Using openFrameworks' projectGenerator, import the project.
-1. If using Visual Studio, create a solution. Then create a project with the src folder.
-Run the local windows debugger.
+1. Clone this repository onto your computer. 
+1. Use openFrameworks' project generator to import the project. Include 
+[ofxDatGui](https://github.com/braitsch/ofxDatGui) and 
+[ofxJSON](https://github.com/jeffcrouse/ofxJSON) from the addons dropdown menu.
+1. Run the local windows debugger.
 
 ## Running the Tests
-Create new projects from the different test folders.
+If using Visual Studio, create a new project for each test folder. 
 

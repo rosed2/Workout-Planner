@@ -1,4 +1,5 @@
-
+//Represents a parser object, reads exercise data from a json file
+//Created 4-17-19 by Rose Dinh
 
 #pragma once
 

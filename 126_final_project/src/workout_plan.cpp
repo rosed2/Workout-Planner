@@ -1,4 +1,4 @@
-
+//Created 4-15-19 by Rose Dinh
 
 #include "workout_plan.h"
 #include <string>
@@ -54,10 +54,12 @@ bool WorkoutPlan::ContainsExercise(string name) {
 	return false;
 }
 
+//Method to add an exercise to a workout plan
 void WorkoutPlan::AddExercise(Exercise ex) {
 	exercises_.push_back(ex);
 }
 
+//Overrides ostream & operator
 std::ostream& operator<<(std::ostream& stream, WorkoutPlan &c) {
 	stream << c.GetName() << std::endl;
 	for (int i = 0; i < c.GetExercises().size(); i++) {
@@ -66,6 +68,7 @@ std::ostream& operator<<(std::ostream& stream, WorkoutPlan &c) {
 	return stream;
 }
 
+//Method to remove an exercise from the workout plan based on name
 void WorkoutPlan::RemoveExercise(string name) {
 	for (vector<Exercise>::iterator it = exercises_.begin(); it != exercises_.end(); ++it) {
 		if (it->GetName() == name) {

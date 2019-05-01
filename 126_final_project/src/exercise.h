@@ -1,3 +1,4 @@
+//Represents an exercise object
 //Created 4-15-19 by Rose Dinh
 
 #pragma once

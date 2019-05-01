@@ -1,4 +1,4 @@
-
+//Created 4-15-19 by Rose Dinh
 
 #include "library.h"
 #include "workout_plan.h"
@@ -50,6 +50,7 @@ vector<WorkoutPlan> Library::SearchForPlanByExercise(string name) {
 	return to_return;
 }
 
+//Method to add a workoutplan to the library
 void Library::AddWorkoutPlan(WorkoutPlan plan) {
 	workout_plans_->push_back(plan);
 }
@@ -116,6 +117,7 @@ vector<Exercise> Library::SearchForExercisesByEquipment(string name) {
 	return to_return;
 }
 
+//Method to remove a workout plan from the library based on name
 void Library::RemoveWorkoutPlan(string name) {
 	for (vector<WorkoutPlan>::iterator it = workout_plans_->begin(); it != workout_plans_->end(); 
 																							++it) {
